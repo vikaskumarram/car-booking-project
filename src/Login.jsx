@@ -13,7 +13,7 @@ export function Login() {
             Login
           </button>
           <button
-            className={Login ? "active" : ""}
+            className={!Login ? "active" : "Login"}
             onClick={() => setLogin(false)}
           >
             SignUp
@@ -25,16 +25,16 @@ export function Login() {
               <h1>please login to your Account</h1>
               <input type="email" placeholder="Mobile,Email" />
               <input type="password" placeholder="Password" />
-              <a hrfc="#">Forget password ?</a>
+              <a href="#">Forget password ?</a>
               <button>Login</button>
               <h2>
-              <p>
-                Don't have an account yet?
-                <a hrfc="#" onClick={() => setLogin(false)}>
-                  {" "}
-                  Sign up
-                </a>
-              </p>
+                <p>
+                  Don't have an account yet?
+                  <a href="#" onClick={() => setLogin(false)}>
+                    {" "}
+                    Sign up
+                  </a>
+                </p>
               </h2>
             </div>
           </>

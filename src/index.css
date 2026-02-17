@@ -52,7 +52,7 @@ body{
 
 .contact{
  background-color: rgb(127, 255, 212);
- height: 20rem;
+ height: 25rem;
  width: 75rem;
 display: flex;
 justify-content: center;
@@ -73,7 +73,7 @@ align-items: center;
 justify-content: center;
 align-items: center;
 background-color: aqua;
-height: 20rem;
+height: 25rem;
 width: 75rem;
 gap: 5rem;
 }
@@ -163,13 +163,13 @@ border-radius: 50%;
 .services-container{
     background-color: aquamarine;
     gap: .5rem;
-    height: 65.6rem;
+    height: 131rem;
     width: 75rem;
     gap: 2rem;
     text-align: center;
 }
 .services-container:hover{
-    background-color: #cdf909;
+    background-color: #306087;
     
 }
 .services-box-container{
@@ -194,37 +194,65 @@ border-radius: .5rem;
 .services-box2{
 background-color: blue;
 /* padding: 2rem; */
-height: 20rem;
+height: 25rem;
 text-align: center;
 justify-content: center;
 border-radius: 1rem;
 
+}
+.image1{
+    border-radius: 1rem;
+    height: 25rem;
+    width: 37.5rem   
+}
+.image1:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    
 }
 .services-box2:hover{
     background-color: #e9188e;
     cursor: pointer;
     transform: scale(1.1);
 }
+.image2{
+    height: 25rem;
+    width: 37.5rem;
+    border-radius: 1rem;
+}
+.image2:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
 .services-box3{
-background-color: #9dff00;
+background-color: #b78e14;
 /* padding: 2rem; */
-height: 20rem;
+height: 25rem;
 text-align: center;
 border-radius: 1rem;
 
 }
+
 .services-box3:hover{
     background-color: #e35c08;
     cursor: pointer;
     transform: scale(1.1);
 }
 .services-box4{
- /* padding: 2rem; */
 background-color: rgb(109, 109, 169);
-height: 20rem;
+height: 25rem;
 text-align: center;
 border-radius: 1rem;
 
+}
+.image3{
+      height: 25rem;
+    width: 37.5rem;
+    border-radius: 1rem;
+}
+.image3:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 .services-box4:hover{
     background-color: #e20b15;
@@ -234,11 +262,21 @@ border-radius: 1rem;
 .services-box5{
    /* padding: 2rem; */
 background-color: rgb(168, 40, 171);
-height: 20rem;
+height: 25rem;
 text-align: center;
 border-radius: 1rem;
 
 }
+.image4{
+      height: 25rem;
+    width: 37.5rem;
+    border-radius: 1rem;
+}
+.image4:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 .services-box5:hover{
     background-color: #3908ca;
     cursor: pointer;
@@ -248,11 +286,20 @@ border-radius: 1rem;
    /* padding: 2rem;   */
 background-color: rgb(236, 3, 147);
 text-align: center;
-height: 20rem;
+height: 25rem;
 box-shadow: 2rem;
 border-radius: 1rem;
 justify-content: center;
 
+}
+.image5{
+      height: 25rem;
+    width: 37.5rem;
+    border-radius: 1rem;
+}
+.image5:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 .services-box6:hover{
     background-color: #18e9d4;
@@ -272,22 +319,31 @@ justify-content: center;
 display:block;
 }
 .login-form{
+    margin-top: 1rem;
     justify-content: center;
     align-items: center;
-    height: 20rem;
+    height: 25rem;
     width: 40rem;
     background-color: rgb(176, 63, 156);
     text-align: center;
     color: rgb(24, 1, 15);
-
+    border-radius: 1rem;
+padding-top: 2rem;
+}
+.login-form button{
+    background-color: #18e9d4;
+    height: 3rem;
+    width: 10rem;
+    font-size: 1.7rem;
+    font-family: sans-serif;
+border-radius: .5rem;
 }
 .login-form:hover{
    transform: scale(1.1); 
    background-color: aquamarine;
 }
 .content{
-    
-    color: hsl(318, 95%, 52%);
-    text-decoration: underline
-    
+   font-family: sans-serif; 
+    color: hsl(81, 100%, 3%);
+    text-decoration: underline   
 }
