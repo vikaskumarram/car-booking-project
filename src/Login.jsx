@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export function Login() {
+  
   const [Login, setLogin] = useState(true);
   return (
     <div className="login-page">
@@ -16,6 +17,7 @@ export function Login() {
             className={!Login ? "active" : "Login"}
             onClick={() => setLogin(false)}
           >
+          
             SignUp
           </button>
         </div>
@@ -23,9 +25,19 @@ export function Login() {
           <>
             <div className="form">
               <h1>please login to your Account</h1>
-              <input type="email" placeholder="Mobile,Email" />
-              <input type="password" placeholder="Password" />
-              <a href="#">Forget password ?</a>
+              <input
+                type="email"
+                placeholder="Mobile,Email"
+                className="login-email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="login-password"
+              />
+              <h2>
+                <a href="#">Forget password ?</a>
+              </h2>
               <button>Login</button>
               <h2>
                 <p>
@@ -42,10 +54,22 @@ export function Login() {
           <>
             <div className="form">
               <h1>please Sign Up your Account</h1>
-              <input type="email" placeholder="mobile,Email" />
-              <input type="password" placeholder="password" />
+              <input
+                type="email"
+                placeholder="mobile,Email"
+                className="email-mobile"
+              />
+              <input
+                type="password"
+                placeholder="password"
+                className="password"
+              />
               <h1>
-                <input type="password" placeholder="conform password" />
+                <input
+                  type="password"
+                  placeholder="conform password"
+                  className="conform-password"
+                />
               </h1>
             </div>
           </>

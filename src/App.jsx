@@ -1,13 +1,12 @@
 import "./index.css";
-import { Form, Link, Route, Routes } from "react-router";
-
+import { Link, Route, Routes } from "react-router";
+// import { BrowserRouter } from "react-router-dom";
 import { Home } from "./Home";
 import { Contact } from "./Contact";
 import { Services } from "./services";
 import { About } from "./About";
 import { Footer } from "./Footer";
 import { Login } from "./Login";
-
 export default function App() {
   return (
     <>
@@ -23,14 +22,17 @@ export default function App() {
         </Link>
       </nav>
 
-      <Routes>
-        <Route path="/Home" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Services" element={<Services />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Login" element={<Login />} />
-      </Routes>
-      <Footer />
+      {/* <BrowserRouter> */}
+        <Routes>
+          <Route path="Home" element={<Home />} />
+          <Route path="About" element={<About />} />
+          <Route path="Services" element={<Services />} />
+          <Route path="Contact" element={<Contact />} />
+          <Route path="Login" element={<Login />} />
+        </Routes>
+        <Footer />
+      {/* </BrowserRouter> */}
     </>
   );
 }
+

@@ -15,9 +15,9 @@ export function Services() {
           </h3>
         </div>
 
-        <img className="image1" src="public/service image 1.jpg" alt="" />
+        <img className="image1" src="public/services-image1.jpg" alt="" />
 
-        <img className="image2" src="public/services image2.jpg" alt="" />
+        <img className="image2" src="public/services-image2.jpg" alt="" />
 
         <div className="services-box3">
           <h2>2. Outstation (Inter-city)</h2>
@@ -36,8 +36,8 @@ export function Services() {
             smoothly even on rough rural roads.
           </h3>
         </div>
-        <img className="image3" src="public/services imsge3.jpg" alt="" />
-        <img className="image4" src="public/services image4.jpg" alt="" />
+        <img className="image3" src="public/services-image3.jpg" alt="" />
+        <img className="image4" src="public/services-image4.jpg" alt="" />
         <div className="services-box5">
           <h2>4. Rental Packages</h2>
           <h3>
@@ -46,7 +46,7 @@ export function Services() {
             booking a new taxi again and again.
           </h3>
         </div>
-        
+
         <div className="services-box6">
           <h2>5. Airport/Railway Transfers</h2>
           <h3>
@@ -54,7 +54,7 @@ export function Services() {
             so that you never miss your flight or train.
           </h3>
         </div>
-        <img className="image5" src="public/services image 5.jpg" alt="" />
+        <img className="image5" src="public/services-image5.jpg" alt="" />
       </div>
     </div>
   );
