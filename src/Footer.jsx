@@ -1,5 +1,8 @@
+import { Navigate } from "react-router";
+
 export function Footer() {
   return (
+  
     <div className="foot">
       <img className="footer-logo" src="public\V-taxi logo.jpg" alt="" />
       <div className="foolow">
@@ -28,5 +31,6 @@ export function Footer() {
         the city and village,
       </div>
     </div>
+  
   );
 }

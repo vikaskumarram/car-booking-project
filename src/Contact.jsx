@@ -16,16 +16,17 @@ export function Contact() {
     // Yahan aap API call kar sakte hain data save karne ke liye
   };
   return (
+    <div className="contact-container">
     <div
       style={{ maxWidth: "350px", margin: "auto", fontFamily: "sans-serif" }}
     >
-      <h3>Contact Us</h3>
+      <div className="conatact-us"><h3>Contact Us</h3></div>
       <form onSubmit={sendRequest}>
         <div style={{ marginBottom: "12px" }}>
           <input
             type="text"
             name="fullName"
-            placeholder="Aapka Naam"
+            placeholder="Name"
             value={contact.fullName}
             onChange={handleInputChange}
             required
@@ -62,6 +63,7 @@ export function Contact() {
           Request Call Back
         </button>
       </form>
+    </div>
     </div>
   );
 }

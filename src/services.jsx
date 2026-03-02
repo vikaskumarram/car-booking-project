@@ -1,8 +1,9 @@
 export function Services() {
+ 
   return (
     <div className="services-container">
       <div className="services-box1">
-        <h1>Our Services (V-Taxi)</h1>
+        <h1> Welcome to Vikas-Taxi Services</h1>
       </div>
       <div className="services-box-container">
         <div className="services-box2">
@@ -15,7 +16,7 @@ export function Services() {
           </h3>
         </div>
 
-        <img className="image1" src="public/services-image1.jpg" alt="" />
+        <img className="image1"src="public/services-image1.jpg" alt="" />
 
         <img className="image2" src="public/services-image2.jpg" alt="" />
 
@@ -56,6 +57,9 @@ export function Services() {
         </div>
         <img className="image5" src="public/services-image5.jpg" alt="" />
       </div>
+
     </div>
+    
   );
+
 }
