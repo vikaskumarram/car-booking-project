@@ -5,7 +5,7 @@ export function Home() {
 
       <div className="ride-container">
         <div className="taxt-ride-container">
-        <h1>India Moves On  Vikas taxi!</h1>
+        <h1>India Rides with Vikas Taxi! 🚕</h1>
 
         <input type="text" placeholder="Enter Pickup Location" />
 

@@ -17,7 +17,9 @@ export function Contact() {
 
   return (
     <div className="full-contact-container">
+      {/* <h1>You can find us here for your queries</h1> */}
       <div className="contact-container">
+        <h1>You can find us here for your queries</h1>
         <h2>Contact Us</h2>
 
         <form onSubmit={formik.handleSubmit}>
@@ -52,7 +54,7 @@ export function Contact() {
             value={formik.values.message}
           ></textarea>
 
-          <button type="submit">Send Message</button>
+          <button type="submit">submit</button>
         </form>
 
       </div>

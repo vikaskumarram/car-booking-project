@@ -14,12 +14,14 @@ export default function App() {
   return (
     <>
       <nav className="navbar">
-        <img className="first-logo" src="public\V-taxi logo2.JPG" alt="" />
+        <div><img className="first-logo" src="public\V-taxi logo2.JPG" alt="" /></div>
+        <div className="navbar-taxt">
         <Link to="Home">Home</Link>
         <Link to="About">About</Link>
         <Link to="Services">Services</Link>
         <Link to="Contact"> Contact </Link>
         <Link to="Login"> Login </Link>
+        </div>
       </nav>
 
       {/* <BrowserRouter> */}
