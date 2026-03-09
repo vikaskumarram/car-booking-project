@@ -1,69 +1,61 @@
-import { useState } from "react";
+
+import { useFormik } from "formik";
 export function Contact() {
-  const [contact, setContact] = useState({
-    fullName: "",
-    email: "",
-    mobile: "",
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      number: "",
+      email: "",
+      message: "",
+    },
+
+    onSubmit: (values) => {
+      console.log(values);
+      alert("Message Sent Successfully ✅");
+    },
   });
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setContact({ ...contact, [name]: value });
-  };
-  const sendRequest = (e) => {
-    e.preventDefault();
-    console.log("Contact Data:", contact);
-    alert("Thank you! Hum aapse jald hi contact karenge.");
-    // Yahan aap API call kar sakte hain data save karne ke liye
-  };
+
   return (
-    <div className="contact-container">
-    <div
-      style={{ maxWidth: "350px", margin: "auto", fontFamily: "sans-serif" }}
-    >
-      <div className="conatact-us"><h3>Contact Us</h3></div>
-      <form onSubmit={sendRequest}>
-        <div style={{ marginBottom: "12px" }}>
+    <div className="full-contact-container">
+      <div className="contact-container">
+        <h2>Contact Us</h2>
+
+        <form onSubmit={formik.handleSubmit}>
+          <label>Your Name</label>
           <input
             type="text"
-            name="fullName"
-            placeholder="Name"
-            value={contact.fullName}
-            onChange={handleInputChange}
-            required
-            className="contact1"
+            name="name"
+            onChange={formik.handleChange}
+            value={formik.values.name}
           />
-        </div>
 
-        <div style={{ marginBottom: "12px" }}>
+          <label>Your Number</label>
+          <input
+            type="number"
+            name="number"
+            onChange={formik.handleChange}
+            value={formik.values.number}
+          />
+
+          <label>Your Email</label>
           <input
             type="email"
             name="email"
-            placeholder="Email ID"
-            value={contact.email}
-            onChange={handleInputChange}
-            required
-            className="contact2"
+            onChange={formik.handleChange}
+            value={formik.values.email}
           />
-        </div>
 
-        <div style={{ marginBottom: "12px" }}>
-          <input
-            type="tel"
-            name="mobile"
-            placeholder="Mobile Number"
-            value={contact.mobile}
-            onChange={handleInputChange}
-            required
-            maxLength="10"
-          className="contact3"
-          />
-        </div>
+          <label>Message</label>
+          <textarea
+            name="message"
+            onChange={formik.handleChange}
+            value={formik.values.message}
+          ></textarea>
 
-        <button type="submit" className="contact4">
-          Request Call Back
-        </button>
-      </form>
-    </div>
+          <button type="submit">Send Message</button>
+        </form>
+
+      </div>
     </div>
   );
 }

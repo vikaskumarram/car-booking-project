@@ -1,7 +1,20 @@
 export function Home() {
   return (
-    <header className="header">
-      <div className="bg"></div>
-    </header>
+    <div>
+      {/* <div className="bg"></div> */}
+
+      <div className="ride-container">
+        <div className="taxt-ride-container">
+        <h1>India Moves On  Vikas taxi!</h1>
+
+        <input type="text" placeholder="Enter Pickup Location" />
+
+        <input type="text" placeholder="Enter Drop Location" />
+
+        <button>Book Ride</button>
+        </div>
+      </div>
+    </div>
   );
 }
+

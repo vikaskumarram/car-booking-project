@@ -1,5 +1,5 @@
 
-body{
+*{
     margin: 0;
     padding: 0;
 }
@@ -52,55 +52,20 @@ justify-content: center;
 .navbar{
     background-color: rgb(220, 224, 179);
     height: 5rem;
-    width: 73.2rem;
+    /* width: 73.2rem; */
     display: flex;
-    justify-content: left;
+    justify-content:left;
+    font-size: 1.2rem;
     gap: 3rem;
-    font-size: 1.5rem;
-    justify-content: left;
     align-items: center;
-    padding-right: 2rem;
+    padding-left: 0rem;
     font-family: sans-serif;
 
 }
-
-
-.contact-container{
- background-color: rgb(166, 178, 193);
- height: 35rem;
- width: 75.2rem;
-display: flex;
-line-height: 4rem;
-justify-content: center;
- }
- .contact1{
-    height: 2.5rem;
-    width: 30rem;
-     border-radius: .5rem;
-     
- }
-  .contact2{
-    height: 2.5rem;
-    width: 30rem;
-     border-radius: .5rem;
- }
-  .contact3{
-    height: 2.5rem;
-    width: 30rem;
-    border-radius: .5rem;
- }
-  .contact4{
-    height: 2.5rem;
-    width: 10rem;
-    border-radius: .5rem;
- }
- .conatact-us{
-    font-size: 3rem;
-    margin: 0;
-    text-decoration: underline;
-    font-family: sans-serif;
- }
-
+.navbar a{
+    text-decoration: none;
+}
+ 
 .about-content{
     display: flex;
 justify-content: center;
@@ -150,8 +115,6 @@ transition: all 0.5s ease;
  font-family: sans-serif;
  }
 
-
-
 .foot{
     display: flex;
     justify-content: end;
@@ -159,7 +122,7 @@ transition: all 0.5s ease;
     justify-content: center;
     align-items: center;
     height: 18rem;
-    width: 71.2rem;
+    width: 71.3rem;
     background-color: rgb(187, 195, 168);
     padding-right: 2rem;
     padding-left: 2rem;
@@ -196,7 +159,7 @@ border-radius: 50%;
 .services-container{
     background-color: rgb(198, 231, 220);
     gap: .5rem;
-    height: 154rem;
+    height: 153.8rem;
     width: 75rem;
     gap: 2rem;
     text-align: center;
@@ -211,6 +174,7 @@ row-gap: .2rem;
 column-gap: .2rem;
 width: 100%;
 text-align: center;
+
 }
 
 .services-box1{
@@ -224,7 +188,6 @@ text-align: center;
 }
 .services-box2{
 background-color: #cb95c5;
-/* padding: 2rem; */
 height: 30rem;
 text-align: center;
 align-content: center;
@@ -238,17 +201,12 @@ transition: all 0.5s ease;
 
     height: 30rem;
     width: 37.5rem   
-    
 }
-
-
 
 .image2{
     height: 30rem;
     width: 37.5rem;
-
 }
-
 
 .services-box3{
 background-color: #b78e14;
@@ -296,10 +254,6 @@ transition: all 0.5s ease;
 
 }
 
-
-
-
-
 .services-box6{
    /* padding: 2rem;   */
 background-color: rgb(236, 3, 147);
@@ -320,15 +274,18 @@ transition: all 0.5s ease;
 }
 
 .content{
+
     font-size: 1rem;
    font-family: sans-serif; 
     color: hsl(81, 100%, 3%);
-    text-decoration: underline   
+    text-decoration: underline 
+  
     
 }
 .services-box5 h3 {
     margin-left: 5rem;
     margin-right: 5rem;
+    
 }
 
 .services-box6 h3 {
@@ -353,4 +310,143 @@ transition: all 0.5s ease;
 .front-image{
     height: 50rem;
     width: 75rem;
+}
+
+.full-contact-container{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /* background: linear-gradient(135deg, #c33764, #7b2ff7); */
+  background: linear-gradient(135deg, #4b0082, #8a2be2, #d16ba5);
+height: 43rem;
+display: flex;
+justify-content: center;
+
+}
+
+
+.contact-container {
+  width: 90%;
+  max-width: 500px;
+  margin: .1px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d4ef07, #3a6a93);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+}
+.contact-container h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+}
+.form:hover{
+    transform: scale(1.1);
+}
+
+label {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+
+input {
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e6e6e6;
+  font-size: 15px;
+
+}
+
+textarea {
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e6e6e6;
+  height: 160px;
+  font-size: 15px;
+  resize: none;
+}
+
+button {
+  margin-top: 25px;
+  width: 160px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ff00cc, #7b2ff7);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+.ride-container{
+    background-image: url("public/plain back.jpg");
+      width: 75.2rem;
+    height: 40rem;
+    background-size: cover;
+}
+.taxt-ride-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+    width: 45rem;
+   size: 5rem;
+   padding-left: 15rem;
+   font-size: 1.5rem;
+   font-family: sans-serif;
+   input{
+    height: 2.5rem;
+    background-color: #c6dcb1;
+    border-radius: 1rem;
+   }
+}
+.login-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.login-form{
+  width:300px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.login-input{
+  margin:10px 0;
+  padding:8px;
+  height: 35px;
+  width: 400px;
+}
+
+.login-button{
+  background:green;
+  color:white;
+  padding:10px;
+  border:none;
+  cursor:pointer;
+}
+
+.toggle-link{
+  margin-top:10px;
+  text-align:center;
+  color:blue;
+  cursor:pointer;
+  text-decoration: underline;
 }
