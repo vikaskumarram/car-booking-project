@@ -14,13 +14,15 @@ export default function App() {
   return (
     <>
       <nav className="navbar">
-        <div><img className="first-logo" src="public\V-taxi logo2.JPG" alt="" /></div>
+        <div>
+          <img className="first-logo" src="public\V-taxi logo2.JPG" alt="" />
+        </div>
         <div className="navbar-taxt">
-        <Link to="Home">Home</Link>
-        <Link to="About">About</Link>
-        <Link to="Services">Services</Link>
-        <Link to="Contact"> Contact </Link>
-        <Link to="Login"> Login </Link>
+          <Link to="Home">Home</Link>
+          <Link to="About">About</Link>
+          <Link to="Services">Services</Link>
+          <Link to="Contact"> Contact </Link>
+          <Link to="Login"> Login </Link>
         </div>
       </nav>
 
@@ -28,6 +30,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="Home" element={<Home />} />
+        <Route path="Taxifair" element={<Taxifair />} />
         <Route path="About" element={<About />} />
         <Route path="Services" element={<Services />} />
         <Route path="Contact" element={<Contact />} />

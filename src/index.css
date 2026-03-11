@@ -11,18 +11,6 @@
     
 }
 
-
-.landing-taxt{
-    margin: 0;
-    background-color: azure;
-    font-family: sans-serif;
-    width: 75.3rem; 
-    height: 3rem;
-    display: flex;
-align-items: center;
-justify-content: center;
-}
-
 .bg{
     background-image: url("public/home image11.jpg");
     background-size: cover;
@@ -176,9 +164,9 @@ color: blue;
 
 
 .services-container{
-    background-color: rgb(198, 231, 220);
+    /* background-color: rgb(198, 231, 220); */
     gap: .5rem;
-    height: 153.8rem;
+    height: 153rem;
     width: 75.2rem;
     gap: 2rem;
     text-align: center;
@@ -189,8 +177,8 @@ color: blue;
 .services-box-container{
 display: grid;
 grid-template-columns:  repeat(2,50%);
-row-gap: .2rem;
-column-gap: .2rem;
+/* row-gap: .2rem;
+column-gap: .2rem; */
 width: 100%;
 text-align: center;
 
@@ -206,7 +194,7 @@ text-align: center;
     width: 75.3rem;
 }
 .services-box2{
-background-color: #cb95c5;
+background-color: azure;
 height: 30rem;
 text-align: center;
 align-content: center;
@@ -220,7 +208,7 @@ transition: all 0.5s ease;
 .image1{
 
     height: 30rem;
-    width: 37.5rem   
+    width: 37.7rem   
 }
 
 .image2{
@@ -229,7 +217,7 @@ transition: all 0.5s ease;
 }
 
 .services-box3{
-background-color: #b78e14;
+background-color: azure;
 /* padding: 2rem; */
 height: 30rem;
 text-align: center;
@@ -237,11 +225,12 @@ align-content: center;
 line-height: 2rem;
 transition: all 0.5s ease;
  font-family: sans-serif;
+ width: 37.7rem;
 }
 
 
 .services-box4{
-background-color: rgb(109, 109, 169);
+background-color: azure;
 height: 30rem;
 text-align: center;
 align-content: center;
@@ -253,31 +242,32 @@ line-height: 2rem;
 
 .image3{
       height: 30rem;
-    width: 37.6rem;
+    width: 37.7rem;
     
 }
 
 
 
 .services-box5{
-background-color: rgb(168, 40, 171);
+background-color: azure;
 height: 30rem;
 text-align: center;
 align-content: center;
 line-height: 2rem;
 transition: all 0.5s ease;
  font-family: sans-serif;
+  width: 37.7rem;
 }
 
 .image4{
       height: 30rem;
-    width: 37.8rem;
+    width: 37.7rem;
 
 }
 
 .services-box6{
    /* padding: 2rem;   */
-background-color: rgb(236, 3, 147);
+background-color: azure;
 text-align: center;
 height: 30rem;
 box-shadow: 2rem;
@@ -286,13 +276,13 @@ align-content: center;
 line-height: 2rem;
 transition: all 0.5s ease;
  font-family: sans-serif;
- width: 37.8rem;
+ width: 37.7rem;
  
 }
 
 .image5{
       height: 30rem;
-    width: 37.5rem;
+    width: 37.7rem;
 }
 
 .content{
@@ -396,7 +386,9 @@ textarea {
   font-size: 15px;
   resize: none;
 }
-
+.input{
+    background-color: #5c10f4;
+}
 button {
   margin-top: 25px;
   width: 160px;
@@ -410,38 +402,19 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.9;
-}
-
 .ride-container{
     background-image: url("public/plain back.jpg");
       width: 75.3rem;
     height: 40rem;
     background-size: cover;
 }
-.taxt-ride-container{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-top: 4rem;
-    width: 45rem;
-   size: 5rem;
-   padding-left: 15rem;
-   font-size: 1.5rem;
-   font-family: sans-serif;
-   input{
-    height: 2.5rem;
-    background-color: azure;
-    border-radius: 1rem;
-   }
-}
+
 .login-container{
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
-  background-color: #c4b484;
+  background-color:azure;
 }
 
 .login-form{
@@ -473,4 +446,32 @@ button:hover {
   color:rgb(44, 5, 215);
   cursor:pointer;
   text-decoration: underline;
+}
+.taxi-box{
+
+width:350px;
+margin:auto;
+padding:20px;
+background:#f4f4f4;
+text-align:center;
+border-radius:10px;
+
+}
+
+.taxi-box input{
+
+width:90%;
+padding:10px;
+margin:10px;
+
+}
+
+.taxi-box button{
+
+padding:10px;
+background:orange;
+color:white;
+border:none;
+cursor:pointer;
+
 }
