@@ -1,7 +1,16 @@
-
 import "./index.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+
+// 📍 Real Distance Data
+const cityDistances = {
+  "Aligarh, UP-Mathura, UP": 65, "Mathura, UP-Aligarh, UP": 65,
+  "Lucknow, UP-Kanpur, UP": 95, "Kanpur, UP-Lucknow, UP": 95,
+  "Lucknow, UP-Varanasi, UP": 310, "Varanasi, UP-Lucknow, UP": 310,
+  "Delhi, NCR-Noida, UP": 35, "Noida, UP-Delhi, NCR": 35,
+  "Delhi, NCR-Agra, UP": 230, "Agra, UP-Delhi, NCR": 230,
+  "Lucknow, UP-Delhi, NCR": 530, "Delhi, NCR-Lucknow, UP": 530,
+};
 
 export function Home() {
   const location = useLocation();
@@ -10,50 +19,39 @@ export function Home() {
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
   const [isBooked, setIsBooked] = useState(false);
+  const [notification, setNotification] = useState(""); 
   const [otp, setOtp] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null);
   const [distance, setDistance] = useState(0);
 
-  // India aur Uttar Pradesh ki Famous Cities List
+
+
   const cities = [
-    // UP Special Cities
-    "Lucknow, UP",
-    "Kanpur, UP",
-    "Varanasi, UP",
-    "Agra, UP",
-    "Prayagraj, UP",
-    "Meerut, UP",
-    "Ghaziabad, UP",
-    "Noida, UP",
-    "Bareilly, UP",
-    "Aligarh, UP",
-    "Moradabad, UP",
-    "Gorakhpur, UP",
-    "Ayodhya, UP",
-    "Jhansi, UP",
-    "Mathura, UP",
-    // Major India Cities
-    "Mumbai, Maharashtra",
-    "Delhi, NCR",
-    "Bangalore, Karnataka",
-    "Hyderabad, Telangana",
-    "Ahmedabad, Gujarat",
-    "Kolkata, West Bengal",
-    "Jaipur, Rajasthan",
-    "Patna, Bihar",
-    "Bhopal, MP",
+    "Lucknow, UP", "Kanpur, UP", "Varanasi, UP", "Agra, UP",
+    "Prayagraj, UP", "Meerut, UP", "Ghaziabad, UP", "Noida, UP",
+    "Bareilly, UP", "Aligarh, UP", "Moradabad, UP", "Gorakhpur, UP",
+    "Ayodhya, UP", "Jhansi, UP", "Mathura, UP",
+    "Mumbai, Maharashtra", "Delhi, NCR", "Bangalore, Karnataka",
+    "Hyderabad, Telangana", "Ahmedabad, Gujarat", "Kolkata, West Bengal",
+    "Jaipur, Rajasthan", "Patna, Bihar", "Bhopal, MP",
   ];
 
-  const handleInputChange = (e, field) => {
-    const value = e.target.value;
-    field === "pickup" ? setPickup(value) : setDrop(value);
-    setActiveField(field);
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => setNotification(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
 
-    if (value.length > 0) {
-      const filtered = cities.filter((city) =>
-        city.toLowerCase().includes(value.toLowerCase()),
-      );
+  // 🔥 City Filter Logic
+  const handleInputChange = (e, field) => {
+    const val = e.target.value;
+    field === "pickup" ? setPickup(val) : setDrop(val);
+    setActiveField(field);
+    
+    if (val.length > 0) {
+      const filtered = cities.filter(c => c.toLowerCase().includes(val.toLowerCase()));
       setSuggestions(filtered);
     } else {
       setSuggestions([]);
@@ -65,63 +63,60 @@ export function Home() {
       setPickup(city);
     } else {
       setDrop(city);
-      // UP ke andar ya bahar ke liye random KM (20 to 600 KM)
-      const randomKM = Math.floor(Math.randomKM() * 580) + 20;
-      setDistance(randomKM);
+      const routeKey = `${pickup}-${city}`;
+      const reverseKey = `${city}-${pickup}`;
+      const finalDist = cityDistances[routeKey] || cityDistances[reverseKey] || Math.floor(Math.random() * 200) + 50;
+      setDistance(finalDist);
     }
+    // City select hote hi list hide ho jayegi
     setSuggestions([]);
     setActiveField(null);
   };
 
   const handleBook = () => {
-    if (!pickup || !drop) {
-      alert("Please enter both locations! 📍");
+    if (!pickup || !drop || distance === 0) {
+      alert("Kripya locations select karein! 📍");
       return;
     }
-    const newOtp = Math.floor(1000 + Math.random() * 9000);
-    setOtp(newOtp);
+    setOtp(Math.floor(1000 + Math.random() * 9000));
     setIsBooked(true);
+  };
+
+  // 🔥 Done Logic
+  const handleFinalDone = () => {
+    setIsBooked(false);
+    setNotification("Your booking successful! 🎉");
+    setPickup("");
+    setDrop("");
+    setDistance(0);
   };
 
   const totalFare = selectedCar ? distance * selectedCar.price_per_km : 0;
 
   return (
     <div className="hero-page-wrapper">
+      {notification && (
+        <div className="toast-notification">
+          {notification}
+        </div>
+      )}
+
       <div className="ride-container">
-        <h1 className="main-title">India Moves On vikas taxi! 🚕</h1>
+        <h1 className="main-title">India Moves On Vikas Taxi! 🚕</h1>
 
         {selectedCar && (
           <div className="selected-car-big-card">
             <div className="card-badge">Selected Sawari</div>
             <div className="card-content">
-              <img
-                src={selectedCar.image}
-                alt={selectedCar.name}
-                className="big-car-img"
-              />
+              <img src={selectedCar.image} alt={selectedCar.name} className="big-car-img" />
               <div className="big-car-info">
                 <h2>{selectedCar.name}</h2>
-                <p className="big-rate">
-                  ₹{selectedCar.price_per_km} <small>/ km</small>
-                </p>
-                <p className="eta-text">
-                  ⭐ {selectedCar.rating} • 5 mins away
-                </p>
+                <p className="big-rate">₹{selectedCar.price_per_km} <small>/ km</small></p>
               </div>
             </div>
-
-            {pickup && drop && distance > 0 && (
-              <div
-                className="fare-calculator-section"
-                style={{
-                  marginTop: "15px",
-                  borderTop: "1px dashed #ccc",
-                  paddingTop: "10px",
-                }}
-              >
-                <p>
-                  Total Distance: <b>{distance} KM</b>
-                </p>
+            {distance > 0 && (
+              <div className="fare-calculator-section">
+                <p>Total Distance: <b>{distance} KM</b></p>
                 <h3 style={{ color: "#27ae60" }}>Total Fare: ₹{totalFare}</h3>
               </div>
             )}
@@ -130,55 +125,29 @@ export function Home() {
 
         <div className="input-group" style={{ position: "relative" }}>
           <div className="field-box">
-            <span className="dot pickup-dot"></span>
-            <input
-              type="text"
-              placeholder="Enter Pickup Location"
-              value={pickup}
-              onChange={(e) => handleInputChange(e, "pickup")}
+            <input 
+              type="text" 
+              placeholder="Enter Pickup Location" 
+              value={pickup} 
+              onFocus={() => setActiveField("pickup")} 
+              onChange={(e) => handleInputChange(e, "pickup")} 
             />
           </div>
           <div className="field-box">
-            <span className="dot drop-dot"></span>
-            <input
-              type="text"
-              placeholder="Enter Drop Location"
-              value={drop}
-              onChange={(e) => handleInputChange(e, "drop")}
+            <input 
+              type="text" 
+              placeholder="Enter Drop Location" 
+              value={drop} 
+              onFocus={() => setActiveField("drop")} 
+              onChange={(e) => handleInputChange(e, "drop")} 
             />
           </div>
 
-          {suggestions.length > 0 && (
-            <ul
-              className="suggestion-list"
-              style={{
-                position: "absolute",
-                top: "100%",
-                left: 0,
-                width: "100%",
-                background: "white",
-                borderRadius: "10px",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                zIndex: 100,
-                maxHeight: "200px",
-                overflowY: "auto",
-                padding: 0,
-              }}
-            >
+          {/* 🔥 Scrollable List */}
+          {activeField && suggestions.length > 0 && (
+            <ul className="suggestion-list">
               {suggestions.map((city, index) => (
-                <li
-                  key={index}
-                  onClick={() => selectCity(city)}
-                  style={{
-                    listStyle: "none",
-                    padding: "12px",
-                    cursor: "pointer",
-                    borderBottom: "1px solid #eee",
-                    textAlign: "left",
-                  }}
-                >
-                  📍 {city}
-                </li>
+                <li key={index} onClick={() => selectCity(city)}>📍 {city}</li>
               ))}
             </ul>
           )}
@@ -192,20 +161,14 @@ export function Home() {
           <div className="modal-overlay">
             <div className="modal-content">
               <div className="success-icon">✅</div>
-              <h2>Booking Successful!</h2>
+              <h2>Ride Confirmed!</h2>
               <div className="otp-container">
-                <p>Driver OTP:</p>
+                <p>Your Ride OTP:</p>
                 <h1 className="otp-number">{otp}</h1>
               </div>
-              <p className="route-text">
-                <b>{pickup}</b> ➔ <b>{drop}</b>
-              </p>
-              <p>
-                Distance: {distance} KM | Bill: <b>₹{totalFare}</b>
-              </p>
-              <button className="close-btn" onClick={() => setIsBooked(false)}>
-                Done
-              </button>
+              <p className="route-summary"><b>{pickup}</b> ➔ <b>{drop}</b></p>
+              <p>Distance: {distance} KM | Bill: <b>₹{totalFare}</b></p>
+              <button className="done-btn" onClick={handleFinalDone}>Done</button>
             </div>
           </div>
         )}
