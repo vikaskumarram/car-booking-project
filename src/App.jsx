@@ -1,6 +1,4 @@
 
-
-
 import "./index.css";
 import { Link, Route, Routes, Navigate } from "react-router-dom"; 
 import { Home } from "./Home";
