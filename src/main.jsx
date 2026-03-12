@@ -17,16 +17,28 @@
 // ReactDOM.createRoot(document.getElementById("root")).render(
 //   <App />
 // );
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { BrowserRouter } from "react-router-dom";
+// import { StrictMode } from "react";
+// import { createRoot } from "react-dom/client";
+// import "./index.css";
+// import App from "./App.jsx";
+// import { BrowserRouter } from "react-router-dom";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
+// createRoot(document.getElementById("root")).render(
+//   <StrictMode>
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </StrictMode>
+// );
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom' // Ye import karein
+import App from './App'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter> {/* Poori App ko isse ghero */}
       <App />
     </BrowserRouter>
-  </StrictMode>
-);
+  </React.StrictMode>,
+)

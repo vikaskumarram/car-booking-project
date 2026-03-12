@@ -441,7 +441,7 @@ cursor:pointer;
 .car-list-container {
   padding: 20px;
   background-color: #f5f5f5;
-
+  font-family: sans-serif;
   
 }
 
@@ -519,4 +519,7 @@ cursor:pointer;
 
 .select-btn:hover {
   background-color: green;
+}
+.ride-selection-header{
+font-family: sans-serif;
 }
