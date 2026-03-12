@@ -386,12 +386,10 @@ textarea {
   font-size: 15px;
   resize: none;
 }
-.input{
-    background-color: #5c10f4;
-}
+
 button {
   margin-top: 25px;
-  width: 160px;
+  width: 250px;
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -401,13 +399,11 @@ button {
   font-size: 25px;
   cursor: pointer;
 }
-
-.ride-container{
-    background-image: url("public/plain back.jpg");
-      width: 75.3rem;
-    height: 40rem;
-    background-size: cover;
-}
+/* .hero-page-wrapper{
+  width: 72.8rem;
+  height: 40rem;
+ background-size: cover;
+} */
 
 
 .taxi-box{
@@ -415,7 +411,7 @@ button {
 width:350px;
 margin:auto;
 padding:20px;
-background:#f4f4f4;
+background:#aaa2a2;
 text-align:center;
 border-radius:10px;
 
@@ -494,7 +490,7 @@ cursor:pointer;
 }
 
 .car-type {
-  color: #666;
+  color: #ed34ac;
   font-size: 0.9rem;
   margin: 5px 0;
   font-family: sans-serif;
@@ -522,4 +518,67 @@ cursor:pointer;
 }
 .ride-selection-header{
 font-family: sans-serif;
+}
+.hero-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh; /* Screen height */
+  padding: 20px;
+  background-image: url("public/plain back.jpg");
+  height: 40rem;
+}
+
+.ride-container {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 480px; /* Card size */
+  text-align: center;
+}
+
+.selected-car-big-card {
+  background: #fffdf2;
+  border: 2px solid #ffcc00;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.card-badge {
+  position: absolute;
+  top: -10px; background: #ffcc00;
+  padding: 2px 10px; font-size: 11px;
+  font-weight: bold; border-radius: 5px;
+}
+
+.card-content { display: flex; align-items: center; gap: 20px; }
+
+.big-car-img { width: 150px; height: 120px; }
+
+.big-car-info h2 { margin: 0; font-size: 1.5rem;
+  font-family: sans-serif; }
+
+.big-rate { color: #27ae60; font-weight: bold; margin: 5px 0; }
+
+/* Input field styling */
+.input-group { margin-bottom: 20px; }
+
+.field-box {
+  background: #f1f1f1;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.field-box input {
+  border: none; background: transparent;
+  width: 100%; outline: black; margin-left: 10px;
 }
