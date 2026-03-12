@@ -2,6 +2,8 @@ import { Navigate } from "react-router";
 
 export function Footer() {
   return (
+
+    <>
     <div className="foot">
       <img className="footer-logo" src="public\V-taxi logo.jpg" alt="" />
       <div className="foolow">
@@ -45,5 +47,6 @@ export function Footer() {
         Connecting every corner of the city and village,
       </div>
     </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 export function Services() {
  
   return (
+    <>
     <div className="services-container">
       <div className="services-box1">
         <h1> Welcome to Vikas-Taxi Services</h1>
@@ -59,6 +60,7 @@ export function Services() {
       </div>
 
     </div>
+    </>
     
   );
 

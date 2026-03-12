@@ -1,5 +1,5 @@
-
 import { useFormik } from "formik";
+
 export function Contact() {
   const formik = useFormik({
     initialValues: {
@@ -16,6 +16,8 @@ export function Contact() {
   });
 
   return (
+
+    <>
     <div className="full-contact-container">
       {/* <h1>You can find us here for your queries</h1> */}
       <div className="contact-container">
@@ -59,5 +61,7 @@ export function Contact() {
 
       </div>
     </div>
+
+    </>
   );
 }

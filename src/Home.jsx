@@ -1,6 +1,6 @@
 export function Home(){
   return (
-
+<>
     <div>
       <div className="ride-container">
         <h1>Bharat Moves On vikas taxi! 🚕</h1>
@@ -10,7 +10,7 @@ export function Home(){
         <button>Book Ride</button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

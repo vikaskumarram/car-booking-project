@@ -1,5 +1,6 @@
 export function About() {
   return (
+    <>
     <div className="about-content">
       <div className="about1">
         <h2>About V-Taxi</h2>
@@ -17,5 +18,7 @@ export function About() {
         affordable rate.
       </div>
     </div>
+
+    </>
   );
 }
