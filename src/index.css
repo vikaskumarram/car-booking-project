@@ -37,7 +37,6 @@
 .navbar{
     background-color: rgb(220, 224, 179);
     height: rem;
-    /* width: 73.2rem; */
     display: flex;
 
     font-size: 1.2rem;
@@ -164,7 +163,7 @@ color: blue;
 
 
 .services-container{
-    /* background-color: rgb(198, 231, 220); */
+
     gap: .5rem;
     height: 153rem;
     width: 75.2rem;
@@ -177,8 +176,6 @@ color: blue;
 .services-box-container{
 display: grid;
 grid-template-columns:  repeat(2,50%);
-/* row-gap: .2rem;
-column-gap: .2rem; */
 width: 100%;
 text-align: center;
 
@@ -218,7 +215,6 @@ transition: all 0.5s ease;
 
 .services-box3{
 background-color: azure;
-/* padding: 2rem; */
 height: 30rem;
 text-align: center;
 align-content: center;
@@ -227,7 +223,6 @@ transition: all 0.5s ease;
  font-family: sans-serif;
  width: 37.7rem;
 }
-
 
 .services-box4{
 background-color: azure;
@@ -242,11 +237,8 @@ line-height: 2rem;
 
 .image3{
       height: 30rem;
-    width: 37.7rem;
-    
+    width: 37.7rem;    
 }
-
-
 
 .services-box5{
 background-color: azure;
@@ -324,13 +316,7 @@ transition: all 0.5s ease;
     width: 75rem;
 }
 
-/* body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #87af90, #c07d7d, #8574b3);
-  background-size: cover;
-  min-height: 100vh;
-} */
+
 .full-contact-container{
     background-color: #867f9c;
     display: flex;
@@ -393,18 +379,11 @@ button {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  /* background: linear-gradient(90deg, #0ce437, #5a04e5); */
   color: white;
   background-color: rgb(12, 223, 33);
   font-size: 25px;
   cursor: pointer;
 }
-/* .hero-page-wrapper{
-  width: 72.8rem;
-  height: 40rem;
- background-size: cover;
-} */
-
 
 .taxi-box{
 
@@ -581,4 +560,45 @@ font-family: sans-serif;
 .field-box input {
   border: none; background: transparent;
   width: 100%; outline: black; margin-left: 10px;
+}
+
+.suggestion-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 200px; 
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 0;
+}
+
+.suggestion-list li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  text-align: left;
+}
+
+.suggestion-list li:hover {
+  background: #f1f1f1;
+}
+
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #27ae60;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: bold;
 }
