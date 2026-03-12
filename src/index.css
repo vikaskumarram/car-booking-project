@@ -3,13 +3,6 @@
     margin: 0;
     padding: 0;
 }
-.landing-image{
-    background-image: url("public/white taxi.jpg");
-    width: 75.3rem;
-    height: 39rem;
-    background-size: cover;
-    
-}
 
 .bg{
     background-image: url("public/home image11.jpg");
@@ -112,7 +105,7 @@ transition: all 0.5s ease;
     gap: 5rem;
     justify-content: center;
     align-items: center;
-    height: 20rem;
+    height: 25rem;
     width: 71.3rem;
     background-color: rgb(187, 195, 168);
     padding-right: 2rem;
@@ -150,16 +143,128 @@ line-height: 2rem;
 color: blue;
 }
 
-.footer-logo{
-    height: 7rem;
-    width: 7rem;
-    border-radius: 50%;
-    transition: all 0.5s ease;
+.footer-container {
+  background-color: rgb(220, 224, 179);
+  color: #ffffff;
+  padding: 50px 5% 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.footer-logo:hover{
-      cursor: pointer;
-    transform: scale(1.1);
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; 
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
+
+.footer-col {
+  flex: 1;
+  min-width: 180px; 
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  width: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.footer-heading {
+  color: #f1c40f;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li, .footer-link, .legal-box span {
+  display: block;
+  color: black;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-list li:hover, .footer-link:hover, .legal-box span:hover {
+  color: #f1c40f;
+}
+
+.legal-box p, .brand-text, .support-subtext {
+  font-size: 12px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.app-btns img {
+  width: 130px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Bottom Section Fix */
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #222;
+  text-align: center;
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}
+
+.tagline {
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.copyright-text {
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+/* Tablet & Mobile responsive */
+@media (max-width: 1024px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns for tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+    text-align: center;
+  }
+  .app-btns img {
+    margin: 0 auto 10px;
+  }
+}
+
+
 
 
 .services-container{
@@ -414,10 +519,17 @@ cursor:pointer;
 
 }
 .car-list-container {
-  padding: 20px;
+  /* padding: 20px; */
   background-color: #f5f5f5;
   font-family: sans-serif;
   
+}
+.ride-selection-header{
+    background-color: rgb(55, 106, 106);
+    width: 100%;
+    
+    justify-content: center;
+    align-content: center;
 }
 
 .car-grid {
@@ -443,11 +555,9 @@ cursor:pointer;
 
 .car-image img {
   width: 100%;
-  /* height: 120px; */
   object-fit: contain;
   margin-bottom: 10px;
   border-radius: .5rem;
-  /* border-radius: .5rem; */
 }
 
 .car-header {
@@ -497,15 +607,19 @@ cursor:pointer;
 }
 .ride-selection-header{
 font-family: sans-serif;
+display: flex;
+align-items: center;
+height: 3rem;
+
 }
 .hero-page-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh; /* Screen height */
+  min-height: 90vh; 
   padding: 20px;
-  background-image: url("public/plain back.jpg");
-  height: 40rem;
+  background-image: url("public/white taxi.jpg");
+  height: 43rem;
 }
 
 .ride-container {
@@ -514,7 +628,7 @@ font-family: sans-serif;
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 480px; /* Card size */
+  max-width: 480px; 
   text-align: center;
 }
 
@@ -545,7 +659,6 @@ font-family: sans-serif;
 
 .big-rate { color: #27ae60; font-weight: bold; margin: 5px 0; }
 
-/* Input field styling */
 .input-group { margin-bottom: 20px; }
 
 .field-box {
@@ -593,12 +706,242 @@ font-family: sans-serif;
   position: fixed;
   top: 20px;
   left: 50%;
+  transform: translateX(-50%); 
+  background: #27ae60;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px; 
+  font-weight: bold;
+  z-index: 10000;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from { top: -100px; opacity: 0; }
+  to { top: 20px; opacity: 1; }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  color: #333;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.footer-container {
+  background-color:  black;
+  color: #ffffff;
+  padding: 50px 5% 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-heading {
+  color: #f1c40f;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-list li, .footer-link, .legal-box span {
+  display: block;
+  color:white;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-list li:hover, .legal-box span:hover {
+    cursor: pointer;
+  color: #f1c40f;
+  padding-left: 5px;
+}
+
+.app-btns img {
+  width: 130px;
+  margin-bottom: 10px;
+  display: block;
+}
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #222;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  transition: 0.3s;
+}
+
+.social-icons img:hover {
+  transform: translateY(-7px);
+}
+
+.tagline {
+  font-size: 14px;
+  color: azure;
+  font-family: sans-serif;
+  margin-bottom: 10px;
+}
+
+.copyright-text {
+  font-size: 11px;
+  color: azure;
+  font-family: sans-serif;
+}
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .app-btns img { margin: 0 auto 10px; }
+}
+
+
+
+:root {
+  --primary-color: #f1c40f; 
+  --bg-dark: #0c0c0c;
+  --text-gray: #bbb;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; 
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
   transform: translateX(-50%);
   background: #27ae60;
   color: white;
-  padding: 12px 25px;
+  padding: 15px 35px;
   border-radius: 50px;
-  z-index: 2000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   font-weight: bold;
+  z-index: 10000;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.login-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  min-height: 100vh;      
+  width: 100%;
+  background: #f0f2f5;    
+}
+
+.login-form {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 420px;       
+  text-align: center;
+}
+
+.login-title {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #3809e4;
+  border-radius: 10px;
+  box-sizing: border-box; 
+  font-size: 15px;
+  outline: none;
+}
+
+.login-input:focus {
+  border-color: var(--primary-color);
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
+  border: black;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-button:hover {
+  background-color: rgb(18, 225, 73);
+  transform: translateY(-2px);
+}
+
+.toggle-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.toggle-link:hover {
+  color: #000;
+  text-decoration: underline;
 }

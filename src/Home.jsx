@@ -2,7 +2,6 @@ import "./index.css";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-// 📍 Real Distance Data
 const cityDistances = {
   "Aligarh, UP-Mathura, UP": 65, "Mathura, UP-Aligarh, UP": 65,
   "Lucknow, UP-Kanpur, UP": 95, "Kanpur, UP-Lucknow, UP": 95,
@@ -19,13 +18,11 @@ export function Home() {
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
   const [isBooked, setIsBooked] = useState(false);
-  const [notification, setNotification] = useState(""); 
+  const [notification, setNotification] = useState("");
   const [otp, setOtp] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null);
   const [distance, setDistance] = useState(0);
-
-
 
   const cities = [
     "Lucknow, UP", "Kanpur, UP", "Varanasi, UP", "Agra, UP",
@@ -39,19 +36,18 @@ export function Home() {
 
   useEffect(() => {
     if (notification) {
-      const timer = setTimeout(() => setNotification(""), 3000);
+      const timer = setTimeout(() => setNotification(""), 4000);
       return () => clearTimeout(timer);
     }
   }, [notification]);
 
-  // 🔥 City Filter Logic
   const handleInputChange = (e, field) => {
     const val = e.target.value;
     field === "pickup" ? setPickup(val) : setDrop(val);
     setActiveField(field);
-    
+
     if (val.length > 0) {
-      const filtered = cities.filter(c => c.toLowerCase().includes(val.toLowerCase()));
+      const filtered = cities.filter((c) => c.toLowerCase().includes(val.toLowerCase()));
       setSuggestions(filtered);
     } else {
       setSuggestions([]);
@@ -65,41 +61,44 @@ export function Home() {
       setDrop(city);
       const routeKey = `${pickup}-${city}`;
       const reverseKey = `${city}-${pickup}`;
-      const finalDist = cityDistances[routeKey] || cityDistances[reverseKey] || Math.floor(Math.random() * 200) + 50;
+
+      // --- RANDOM HATAYA GAYA HAI ---
+      // Agar distance data mein hai toh wo dikhayega, nahi toh fixed 100 KM
+      const fixedDistance = 100; 
+      const finalDist = cityDistances[routeKey] || cityDistances[reverseKey] || fixedDistance;
       setDistance(finalDist);
     }
-    // City select hote hi list hide ho jayegi
     setSuggestions([]);
     setActiveField(null);
   };
 
   const handleBook = () => {
-    if (!pickup || !drop || distance === 0) {
-      alert("Kripya locations select karein! 📍");
+    if (!pickup || !drop || !selectedCar) {
+      alert("Kripya Pickup, Drop aur Car sahi se select karein! 📍");
       return;
     }
-    setOtp(Math.floor(1000 + Math.random() * 9000));
+    // OTP ke liye fixed static number ya simple calculation
+    setOtp(1234); 
     setIsBooked(true);
   };
 
-  // 🔥 Done Logic
   const handleFinalDone = () => {
     setIsBooked(false);
     setNotification("Your booking successful! 🎉");
-    setPickup("");
-    setDrop("");
-    setDistance(0);
+
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setPickup("");
+      setDrop("");
+      setDistance(0);
+    }, 2000);
   };
 
   const totalFare = selectedCar ? distance * selectedCar.price_per_km : 0;
 
   return (
     <div className="hero-page-wrapper">
-      {notification && (
-        <div className="toast-notification">
-          {notification}
-        </div>
-      )}
+      {notification && <div className="toast-notification">{notification}</div>}
 
       <div className="ride-container">
         <h1 className="main-title">India Moves On Vikas Taxi! 🚕</h1>
@@ -143,7 +142,6 @@ export function Home() {
             />
           </div>
 
-          {/* 🔥 Scrollable List */}
           {activeField && suggestions.length > 0 && (
             <ul className="suggestion-list">
               {suggestions.map((city, index) => (
