@@ -62,7 +62,7 @@ export function Home() {
       const routeKey = `${pickup}-${city}`;
       const reverseKey = `${city}-${pickup}`;
 
-      // --- RANDOM HATAYA GAYA HAI ---
+    
       // Agar distance data mein hai toh wo dikhayega, nahi toh fixed 100 KM
       const fixedDistance = 100; 
       const finalDist = cityDistances[routeKey] || cityDistances[reverseKey] || fixedDistance;
@@ -74,17 +74,16 @@ export function Home() {
 
   const handleBook = () => {
     if (!pickup || !drop || !selectedCar) {
-      alert("Kripya Pickup, Drop aur Car sahi se select karein! 📍");
+      alert("Kripya Pickup, Drop aur Car sahi se select karein! 🍼📍");
       return;
     }
-    // OTP ke liye fixed static number ya simple calculation
     setOtp(1234); 
     setIsBooked(true);
   };
 
   const handleFinalDone = () => {
     setIsBooked(false);
-    setNotification("Your booking successful! 🎉");
+    setNotification("Your booking successful! 🎉🙅‍♂️");
 
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -105,7 +104,7 @@ export function Home() {
 
         {selectedCar && (
           <div className="selected-car-big-card">
-            <div className="card-badge">Selected Sawari</div>
+            <div className="card-badge">Selected Ride</div>
             <div className="card-content">
               <img src={selectedCar.image} alt={selectedCar.name} className="big-car-img" />
               <div className="big-car-info">
@@ -145,7 +144,7 @@ export function Home() {
           {activeField && suggestions.length > 0 && (
             <ul className="suggestion-list">
               {suggestions.map((city, index) => (
-                <li key={index} onClick={() => selectCity(city)}>📍 {city}</li>
+                <li key={index} onClick={() => selectCity(city)}> 🏢 {city}</li>
               ))}
             </ul>
           )}

@@ -33,6 +33,7 @@
 .navbar a{
     text-decoration: none;
     color: black;
+
 }
 
 .about-container {
@@ -40,7 +41,7 @@
     max-width: 1200px;
     margin: 0 auto;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    color: #333;
+    color: black;
 }
 .about-header {
     text-align: center;
@@ -48,12 +49,12 @@
 }
 .about-header h1 {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: black;
     margin-bottom: 10px;
 }
 .about-header p {
     font-size: 1.1rem;
-    color: #7f8c8d;
+    color: black;
 }
 .about-content {
     display: grid;
@@ -75,7 +76,7 @@
 }
 
 .about-content h2 {
-    color: #2c3e50;
+    color: black;
     margin-bottom: 18px;
     font-size: 1.5rem;
     display: flex;
@@ -94,23 +95,23 @@
 }
 
 .legal-card {
-    background: #fdfdfd;
+    background: white;
     padding: 35px;
     border-radius: 18px;
-    border: 1px solid #eee;
+    border: 1px solid #d30f0f;
     transition: all 0.3s ease-in-out;
 }
 
 .legal-card h2 {
     font-size: 1.6rem;
-    color: #333;
+    color: black;
     margin-bottom: 25px;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 .legal-card:hover {
-    background-color: #fff; 
+    background-color: white; 
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08); 
     border-color: #f1c40f; 
@@ -123,7 +124,7 @@
 
 .legal-card ul li {
     margin-bottom: 15px;
-    color: #555;
+    color: black;
     position: relative;
     padding-left: 25px;
     line-height: 1.6;
@@ -140,7 +141,7 @@
 }
 .safety-card {
     grid-column: span 2; 
-    background: #effaf3; 
+    background: white; 
     border: 1px solid #ee0dab;
 }
 
@@ -148,7 +149,7 @@
     color: #27ae60;
 }
 .safety-card:hover {
-    background-color: #e2f6e9; 
+    background-color: white; 
     box-shadow: 0 5px 10px rgb(202, 210, 151); 
     transform: translateY(-8px);
     border-color: #27ae60; 
@@ -243,7 +244,7 @@ color: blue;
     width: 100%;
     min-height: 100vh;
     font-family: sans-serif;
-    background-color: #f8f9fa;
+    background-color: whitesmoke;
     padding-bottom: 60px; 
 }
 
@@ -282,7 +283,7 @@ color: blue;
     overflow: hidden;
     
 
-    border: 2px solid #eaeaea; 
+    border: 2px solid white; 
     
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -348,7 +349,7 @@ color: blue;
 }
 
 
-.service-row:nth-child(1):hover { border-color: #3498db; }
+.service-row:nth-child(1):hover { border-color: #e40aa3; }
 .service-row:nth-child(2):hover { border-color: #f1c40f; } 
 .service-row:nth-child(3):hover { border-color: #2ecc71; } 
 .service-row:nth-child(4):hover { border-color: #6022e6; } 
@@ -408,10 +409,6 @@ button {
     
     background-image: url("public/contact image.avif"); 
     
-    /* background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;  */
 }
 
 .contact-container {
@@ -867,19 +864,6 @@ body, html {
   background-color: #f4f4f4;
 }
 
-.toast-notification {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #27ae60;
-  color: white;
-  padding: 15px 35px;
-  border-radius: 50px;
-  font-weight: bold;
-  z-index: 10000;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
 
 .login-container {
   display: flex;
@@ -957,7 +941,7 @@ body, html {
     top: 30px; 
     left: 50%;
     transform: translateX(-50%); 
-    background: linear-gradient(135deg, #27ae60, #2ecc71); /* Green gradient */
+    background: linear-gradient(135deg, #27ae60, #2ecc71); 
     color: white;
     padding: 16px 40px;
     border-radius: 50px;
@@ -994,3 +978,8 @@ body, html {
 .logout-btn:hover {
     transform: scale(1.05);
 }
+
+
+
+
+
