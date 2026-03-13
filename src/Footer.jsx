@@ -14,7 +14,7 @@ export function Footer() {
       <div className="footer-content">
         {/* 1. Brand Section */}
         <div className="footer-col">
-          <img className="footer-logo" src="public/V-taxi logo.jpg" alt="Vikas Taxi" />
+          <img className="footer-logo" src="/V-taxi logo2.JPG" alt="Vikas Taxi" />
           <p className="brand-text">Fast, Safe, Reliable.</p>
         </div>
 
@@ -23,10 +23,10 @@ export function Footer() {
           <h3 className="footer-heading">Quick Links</h3>
           <ul className="footer-list">
             <li onClick={() => handleNavigation("/")}>🏠 Home</li>
-            <li onClick={() => handleNavigation("/about")}>📖 About Us</li>
-            <li onClick={() => handleNavigation("/services")}>🚕 Services</li>
-            <li onClick={() => handleNavigation("/booknow")}>📅 Book Now</li>
-            <li onClick={() => handleNavigation("/contact")}>📞 Contact</li>
+            <li onClick={() => handleNavigation("/About")}>📖 About Us</li>
+            <li onClick={() => handleNavigation("/Services")}>🚕 Services</li>
+            <li onClick={() => handleNavigation("/Booknow")}>📅 Book Now</li>
+            <li onClick={() => handleNavigation("/Contact")}>📞 Contact</li>
           </ul>
         </div>
 
@@ -53,16 +53,18 @@ export function Footer() {
           </div>
         </div>
 
-        {/* 5. Legal & Policy */}
+        {/* 5. Legal & Policy - UPDATED TO ABOUT PAGE */}
         <div className="footer-col">
           <h3 className="footer-heading">Legal & Policy</h3>
           <div className="footer-list">
             <div className="legal-box">
-              <span onClick={() => handleNavigation("/terms")}>📜 Terms of Service</span>
+              {/* handleNavigation("/About") kar diya hai */}
+              <span onClick={() => handleNavigation("/About")} style={{cursor: 'pointer'}}>📜 Terms of Service</span>
               <p>Rules for our taxi app.</p>
             </div>
             <div className="legal-box">
-              <span onClick={() => handleNavigation("/privacy")}>🔒 Privacy Policy</span>
+              {/* handleNavigation("/About") kar diya hai */}
+              <span onClick={() => handleNavigation("/About")} style={{cursor: 'pointer'}}>🔒 Privacy Policy</span>
               <p>We protect your data.</p>
             </div>
           </div>
