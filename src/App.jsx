@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { Link, Route, Routes, Navigate } from "react-router-dom";
+import { Link, Route, Routes, Navigate, useNavigate } from "react-router-dom"; // 1. useNavigate add kiya
 import { Home } from "./Home";
 import { Contact } from "./Contact";
 import { Services } from "./services";
@@ -11,18 +11,23 @@ import { Login } from "./Login";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const userStatus = localStorage.getItem("isLoggedIn");
     if (userStatus === "true") {
-      (true);
+      <isLoggedIn>true</isLoggedIn>;
     }
   }, []);
 
   const handleLogout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
+    if (window.confirm("Are you sure you want to logout? 🤔")) {
       localStorage.removeItem("isLoggedIn");
       setIsLoggedIn(false);
+
       alert("Logged out successfully! 👋");
+      navigate("/Login");
+      window.scrollTo(0, 0);
     }
   };
 
@@ -39,7 +44,11 @@ export default function App() {
           <Link to="/Contact">Contact</Link>
           <Link to="/Booknow">Booknow</Link>
           {isLoggedIn ? (
-            <button className="logout-btn" onClick={handleLogout}>
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
               Logout
             </button>
           ) : (

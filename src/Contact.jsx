@@ -5,25 +5,22 @@ export function Contact() {
   const formik = useFormik({
     initialValues: {
       name: "",
-      number: "+", // Global format starts with +
+      number: "+", 
       email: "",
       message: "",
     },
     validate: (values) => {
       let errors = {};
 
-      // 1. Name Validation
       if (!values.name || values.name.trim().length < 2) {
         errors.name = "Please enter a valid name (min 2 letters).";
       }
 
-      // 2. Smart Phone Validation (Local + Global)
-      const cleanNumber = values.number.replace(/[\s+]/g, ""); // '+' aur spaces hata kar check
+      const cleanNumber = values.number.replace(/[\s+]/g, ""); 
 
       if (!values.number || values.number === "+") {
         errors.number = "Phone number with country code is required.";
       } 
-      // Scenario: India (Starts with 91)
       else if (cleanNumber.startsWith("91")) {
         if (cleanNumber.length !== 12) {
           errors.number = "For India, please enter 91 followed by 10 digits (Total 12).";
@@ -31,14 +28,12 @@ export function Contact() {
           errors.number = "Invalid Indian number series (must start with 6-9).";
         }
       } 
-      // Scenario: Global (Other countries)
       else {
         if (cleanNumber.length < 7 || cleanNumber.length > 15) {
           errors.number = "International numbers must be between 7 to 15 digits.";
         }
       }
 
-      // 3. Email Validation
       if (!values.email) {
         errors.email = "Email is required.";
       } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -54,7 +49,6 @@ export function Contact() {
     },
   });
 
-  // Custom function to show alert on first error found
   const handleCustomSubmit = (e) => {
     e.preventDefault();
     if (formik.errors.name) {
@@ -69,6 +63,7 @@ export function Contact() {
   };
 
   return (
+    <div className="contact-image-background">
     <div className="full-contact-container">
       <div className="contact-container">
         <h1>Find us here for your queries</h1>
@@ -122,6 +117,7 @@ export function Contact() {
           <button type="submit" className="contact-btn">Submit</button>
         </form>
       </div>
+    </div>
     </div>
   );
 }
