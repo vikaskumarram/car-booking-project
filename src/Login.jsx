@@ -10,14 +10,13 @@ export function Login({ setIsLoggedIn }) {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // 1. Password Strength Logic Function
+  // 1. Simple Strength Logic (Sirf length aur number par)
   const getStrength = (password) => {
     let strengthCount = 0;
-    if (password.length >= 8) strengthCount++;
-    if (/[A-Z]/.test(password)) strengthCount++;
-    if (/[0-9]/.test(password)) strengthCount++;
-    if (/[^A-Za-z0-9]/.test(password)) strengthCount++;
-    return strengthCount; 
+    if (password.length > 0) strengthCount++; // Kuch toh likha hai
+    if (password.length >= 6) strengthCount++; // 6 characters poore hain
+    if (/\d/.test(password)) strengthCount++; // Ek number bhi hai
+    return strengthCount; // 0 se 3 tak value
   };
 
   const handleForgotPassword = () => {
@@ -31,7 +30,6 @@ export function Login({ setIsLoggedIn }) {
     }
   };
 
-  // 2. Formik Initialization (Pehle ye banega)
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -40,20 +38,23 @@ export function Login({ setIsLoggedIn }) {
     },
     validate: (values) => {
       let errors = {};
+
+      // Username: Sirf 4 letters min aur no space
       if (!values.username) {
         errors.username = "Username is required";
-      } else if (values.username.length < 5) {
-        errors.username = "Username must be at least 5 characters long";
-      } else if (values.username.includes(" ")) {
-        errors.username = "Spaces are not allowed in Username";
+      } else if (values.username.length < 4) {
+        errors.username = "Username must be at least 4 characters";
       }
 
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      // Password: Sirf 6 characters aur 1 number ki shart
       if (!values.password) {
         errors.password = "Password is required";
-      } else if (!passwordRegex.test(values.password)) {
-        errors.password = "Password must be at least 8 characters, include 1 uppercase, 1 number, and 1 special character.";
+      } else if (values.password.length < 6) {
+        errors.password = "Password must be at least 6 characters long";
+      } else if (!/\d/.test(values.password)) {
+        errors.password = "Password must include at least one number";
       }
+
       return errors;
     },
     onSubmit: () => {
@@ -69,15 +70,16 @@ export function Login({ setIsLoggedIn }) {
     },
   });
 
-  // 3. AB STRENGTH CALCULATE KAREIN (Ab error nahi aayega kyunki formik ban chuka hai)
-  const strength = formik.values.password ? getStrength(formik.values.password) : 0;
+  const strength = formik.values.password
+    ? getStrength(formik.values.password)
+    : 0;
 
   const handleSubmitWithCheck = (e) => {
     e.preventDefault();
     if (formik.errors.username) {
       alert("⚠️ " + formik.errors.username);
     } else if (formik.errors.password) {
-      alert("⚠️ Strong Password Required: \n" + formik.errors.password);
+      alert("⚠️ " + formik.errors.password);
     } else {
       formik.handleSubmit();
     }
@@ -127,26 +129,51 @@ export function Login({ setIsLoggedIn }) {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            style={{ position: "absolute", right: "12px", top: "25%", cursor: "pointer" }}
+            style={{
+              position: "absolute",
+              right: "12px",
+              top: "25%",
+              cursor: "pointer",
+            }}
           >
             {showPassword ? "🙈" : "👁️"}
           </span>
         </div>
 
-        {/* --- 🔋 Password Strength Bar --- */}
-        <div style={{ height: "5px", width: "100%", background: "#ddd", borderRadius: "5px", marginBottom: "15px", overflow: "hidden" }}>
-          <div 
-            style={{ 
-              height: "100%", 
-              width: `${(strength / 4) * 100}%`, 
-              backgroundColor: strength === 1 ? "red" : strength === 2 ? "orange" : strength === 3 ? "#f1c40f" : strength === 4 ? "#0cdf21" : "transparent",
-              transition: "width 0.3s ease, background-color 0.3s ease"
+        {/* --- 🔋 Simple Strength Bar --- */}
+        <div
+          style={{
+            height: "4px",
+            width: "100%",
+            background: "#ddd",
+            borderRadius: "5px",
+            marginBottom: "15px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: `${(strength / 3) * 100}%`,
+              backgroundColor:
+                strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21",
+              transition: "width 0.3s ease",
             }}
           ></div>
         </div>
 
         {isLogin && (
-          <p onClick={handleForgotPassword} style={{ textAlign: "right", fontSize: "13px", color: "#e74c3c", cursor: "pointer", marginTop: "-5px", marginBottom: "15px" }}>
+          <p
+            onClick={handleForgotPassword}
+            style={{
+              textAlign: "right",
+              fontSize: "13px",
+              color: "#e74c3c",
+              cursor: "pointer",
+              marginTop: "-5px",
+              marginBottom: "15px",
+            }}
+          >
             Forgot Password?
           </p>
         )}
@@ -155,8 +182,13 @@ export function Login({ setIsLoggedIn }) {
           {isLogin ? "Login" : "Signup"}
         </button>
 
-        <p onClick={() => setIsLogin(!isLogin)} style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}>
-          {isLogin ? "Don't have an account? Signup" : "Already have an account? Login"}
+        <p
+          onClick={() => setIsLogin(!isLogin)}
+          style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}
+        >
+          {isLogin
+            ? "Don't have an account? Signup"
+            : "Already have an account? Login"}
         </p>
       </form>
     </div>
