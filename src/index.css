@@ -535,46 +535,59 @@ background-color: rgb(77, 215, 215);
 
 
 /* booknow page css_________________________________________________________ */
-/* Purane button style ko hata kar ye use karein */
-
+/* edit,delete,like,dislike btn___________________________ */
+.vote-group, .admin-group {
+  display: flex;
+  gap: 15px; 
+}
 .action-bar {
   display: flex;
-  justify-content: space-between; /* Ek group left, ek group right */
+  justify-content: space-between;
   align-items: center;
   margin: 15px 0;
   padding: 5px 0;
-  width: 100%;
 }
 
-/* Icons ke Groups */
-.vote-group, .admin-group {
+.admin-icons, .vote-icons {
   display: flex;
-  gap: 15px; /* Icons ke beech ka gap */
+  gap: 10px;
 }
 
-/* Icons ki styling - No Background */
-.action-icon {
-  background: transparent !important; /* Green box hatane ke liye */
-  border: none !important;
-  padding: 0 !important;
+.icon-btn {
+  background: black !important; 
+  border: 1px solid #ddd !important; 
+  padding: 6px !important;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 20px;
-  color: #555; /* Default color */
-  transition: 0.3s;
+  transition: all 0.2s ease;
 }
 
-/* Specific Colors */
-.like-icon:hover { color: #2ecc71; }
-.dislike-icon:hover { color: #f1c40f; }
-.edit-icon { color: #3498db; }
-.delete-icon { color: #ff0000 !important; } /* Delete icon red kar diya */
-
-.action-icon:hover {
-  transform: scale(1.2);
+.edit-btn {
+  color: #27ae60 !important; 
+}
+.edit-btn:hover {
+  background: #e8f5e9 !important;
 }
 
+.delete-btn {
+  color: #e74c3c !important;
+}
+.delete-btn:hover {
+  background: #fdeaea !important;
+}
+.like-btn, .dislike-btn {
+  color: #f1c40f !important;
+}
+.like-btn:hover, .dislike-btn:hover {
+  background: #fef9e7 !important;
+}
+.icon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* edit,delete,like,dislike btn___________________________ */
 /* Choose button ko alag rakhein */
 .select-btn {
   width: 100%;
@@ -586,16 +599,6 @@ background-color: rgb(77, 215, 215);
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
 .taxi-box{
 width:350px;
 margin:auto;
@@ -606,15 +609,12 @@ border-radius:10px;
 
 }
 
-
-
-
 .taxi-box input{
 
 width:90%;
+
 padding:10px;
 margin:10px;
-
 }
 
 .taxi-box button{
@@ -626,12 +626,9 @@ cursor:pointer;
 
 }
 .car-list-container {
-  
   background-color: #f5f5f5;
   font-family: sans-serif;
-  
 }
-
 
 .car-grid {
   display: grid;
