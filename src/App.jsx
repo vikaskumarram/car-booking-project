@@ -35,7 +35,7 @@ export default function App() {
     <>
       <nav className="navbar">
         <div>
-          <img className="first-logo" src="/V-taxi logo2.JPG" alt="Logo" />
+          <img className="first-logo" src="public/v-taxi-logo.JPG" alt="Logo" />
         </div>
         <div className="navbar-taxt">
           <Link to="/">Home</Link>

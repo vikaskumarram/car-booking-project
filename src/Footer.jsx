@@ -14,7 +14,7 @@ export function Footer() {
         <div className="footer-col">
           <img
             className="footer-logo"
-            src="/V-taxi logo2.JPG"
+            src="public/v-taxi-logo.JPG"
             alt="Vikas Taxi"
           />
           <p className="brand-text">Fast, Safe, Reliable.</p>
