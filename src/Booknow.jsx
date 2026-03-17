@@ -1,37 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Trash2, Edit, ThumbsUp, ThumbsDown } from "lucide-react"; // Edit icon add kiya
+import { Trash2, Edit, ThumbsUp, ThumbsDown, X } from "lucide-react"; 
 import "./index.css";
 
 export function Booknow({ isLoggedIn }) {
   const [cars, setCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  
+  // --- States for Edit Modal ---
+  const [editingCar, setEditingCar] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const navigate = useNavigate();
   const API_URL = "https://6971d21b32c6bacb12c49d70.mockapi.io/cardetails";
 
+  // Data Fetching
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setCars(data))
-      .catch((err) => console.error("Data load nahi hua:", err));
+      .catch((err) => console.error("Data load failed:", err));
   }, []);
 
+  // 1. Delete Logic
   const handleDelete = (id) => {
-    if (window.confirm("Kya aap is car ko delete karna chahte hain?")) {
+    if (window.confirm("Are you sure you want to delete this car?")) {
       fetch(`${API_URL}/${id}`, { method: "DELETE" }).then(() => {
         setCars(cars.filter((car) => car.id !== id));
-        alert("Car delete ho gayi! 🗑️");
+        alert("Car deleted successfully! 🗑️");
       });
     }
   };
 
-  // Edit function (Aap yahan edit ka logic likh sakte hain)
+  // 2. Edit Logic (Alert then Modal)
   const handleEdit = (car) => {
-    alert(`Editing ${car.name}... (Iska logic aap add kar sakte hain)`);
-    // Example: navigate(`/edit-car/${car.id}`);
+    // Pehle alert aayega
+    const confirmEdit = window.confirm(`Do you want to edit ${car.name}?`);
+    
+    if (confirmEdit) {
+      setEditingCar({ ...car }); 
+      setShowModal(true); // OK karne par modal khulega
+    }
   };
 
+  // 3. Update Logic (Saving to API)
+  const handleUpdate = () => {
+    fetch(`${API_URL}/${editingCar.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editingCar),
+    })
+      .then((res) => res.json())
+      .then((updatedData) => {
+        setCars(cars.map((c) => (c.id === updatedData.id ? updatedData : c)));
+        setShowModal(false);
+        alert("Car details updated successfully! ✅");
+      })
+      .catch(() => alert("Update failed! ❌"));
+  };
+
+  // 4. Rating Logic
   const handleVote = (id, type) => {
     setCars(
       cars.map((car) => {
@@ -51,11 +79,11 @@ export function Booknow({ isLoggedIn }) {
 
   const handleChoose = (car) => {
     if (isLoggedIn) {
-      alert(`Aapne ${car.name} Car selected! Now enter your location.`);
+      alert(`You have selected ${car.name}! Now proceed to enter your location.`);
       localStorage.setItem("selectedCar", JSON.stringify(car));
       navigate("/"); 
     } else {
-      alert("⚠️ First login your account or Signup to book a ride!");
+      alert("⚠️ Please login or signup first to book a ride!");
       navigate("/login");
     }
   };
@@ -88,18 +116,10 @@ export function Booknow({ isLoggedIn }) {
 
                   <div className="action-bar">
                     <div className="admin-group" style={{ display: 'flex', gap: '8px' }}>
-                      <button
-                        onClick={() => handleEdit(car)}
-                        className="icon-btn edit-btn"
-                        title="Edit"
-                      >
+                      <button onClick={() => handleEdit(car)} className="icon-btn edit-btn" title="Edit">
                         <Edit size={20} color="#007bff" />
                       </button>
-                      <button
-                        onClick={() => handleDelete(car.id)}
-                        className="icon-btn delete-btn"
-                        title="Delete"
-                      >
+                      <button onClick={() => handleDelete(car.id)} className="icon-btn delete-btn" title="Delete">
                         <Trash2 size={20} color="#e74c3c" />
                       </button>
                     </div>
@@ -128,6 +148,51 @@ export function Booknow({ isLoggedIn }) {
           )}
         </div>
       </div>
+
+      {/* --- EDIT MODAL --- */}
+      {showModal && (
+        <div className="modal-overlay" style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.7)', display: 'flex', 
+          justifyContent: 'center', alignItems: 'center', zIndex: 2000
+        }}>
+          <div className="modal-card" style={{
+            background: 'white', padding: '25px', borderRadius: '15px', 
+            width: '90%', maxWidth: '400px', position: 'relative'
+          }}>
+            <button onClick={() => setShowModal(false)} style={{ position: 'absolute', right: '15px', top: '15px', border: 'none', background: 'none', cursor: 'pointer' }}>
+              <X size={24} color="#666" />
+            </button>
+
+            <h3 style={{ marginBottom: '20px', color: '#333' }}>Edit Car Details</h3>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '5px', fontWeight: 'bold' }}>Car Name</label>
+              <input 
+                type="text" 
+                value={editingCar.name} 
+                onChange={(e) => setEditingCar({...editingCar, name: e.target.value})}
+                style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '5px', fontWeight: 'bold' }}>Price (₹/km)</label>
+              <input 
+                type="number" 
+                value={editingCar.price_per_km} 
+                onChange={(e) => setEditingCar({...editingCar, price_per_km: e.target.value})}
+                style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button onClick={handleUpdate} style={{ flex: 1, padding: '12px', background: '#27ae60', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}>Save Changes</button>
+              <button onClick={() => setShowModal(false)} style={{ flex: 1, padding: '12px', background: '#f5f5f5', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
