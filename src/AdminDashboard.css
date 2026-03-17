@@ -1,7 +1,7 @@
 /* Container */
 .admin-main {
   padding: 30px;
-  background-color: azure;
+  background-color: whitesmoke;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
 }
@@ -18,7 +18,7 @@
 .refresh-btn, .delete-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -27,8 +27,8 @@
   border: none;
 }
 
-.refresh-btn { background: #0aeb11; color: #333; border: 1px solid #ddd; margin-right: 10px; }
-.delete-btn { background: #ace01b; color: white; }
+.refresh-btn { background: #3005f4; color: #09dc3e; border: 1px solid #ddd; margin-right: 10px; }
+.delete-btn { background: rgb(176, 224, 2); color: black}
 
 .refresh-btn:hover { background: #f8f9fa; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .delete-btn:hover { background: #c0392b; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); }
@@ -42,7 +42,7 @@
 
 .stat-card {
   flex: 1;
-  background-color: white;
+  background-color: azure;
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.02);
