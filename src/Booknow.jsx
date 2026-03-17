@@ -51,7 +51,7 @@ export function Booknow({ isLoggedIn }) {
 
   const handleChoose = (car) => {
     if (isLoggedIn) {
-      alert(`Aapne ${car.name} choose ki hai! Ab location bhariye.`);
+      alert(`Aapne ${car.name} Car selected! Now enter your location.`);
       localStorage.setItem("selectedCar", JSON.stringify(car));
       navigate("/"); 
     } else {
@@ -87,7 +87,6 @@ export function Booknow({ isLoggedIn }) {
                   </div>
 
                   <div className="action-bar">
-                    {/* Admin validation hata diya, ab icons hamesha dikhenge */}
                     <div className="admin-group" style={{ display: 'flex', gap: '8px' }}>
                       <button
                         onClick={() => handleEdit(car)}

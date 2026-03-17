@@ -2,13 +2,12 @@ import React from "react";
 import { CheckCircle, X } from "lucide-react";
 
 export function BookingConfirmation({ isOpen, onClose, data }) {
-  // Agar modal open nahi hai ya data nahi hai, toh kuch mat dikhao
   if (!isOpen || !data) return null;
 
   return (
     <div className="modal-overlay">
       <div className="booking-success-card">
-        {/* Close Button */}
+
         <button className="close-x" onClick={onClose}>
           <X size={18} />
         </button>

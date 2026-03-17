@@ -1,10 +1,12 @@
+/* Container */
 .admin-main {
   padding: 30px;
-  background-color: #f4f7f6;
+  background-color: azure;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
+/* Header Sections */
 .admin-header {
   display: flex;
   justify-content: space-between;
@@ -12,30 +14,26 @@
   margin-bottom: 30px;
 }
 
-.admin-header h1 {
-  margin: 0;
-  color: #2c3e50;
-}
-
-.delete-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
+/* --- BUTTONS HOVER --- */
+.refresh-btn, .delete-btn {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
 }
 
-.delete-btn:hover {
-  background-color: #c0392b;
-}
+.refresh-btn { background: #0aeb11; color: #333; border: 1px solid #ddd; margin-right: 10px; }
+.delete-btn { background: #ace01b; color: white; }
 
-/* Stats Cards */
+.refresh-btn:hover { background: #f8f9fa; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.delete-btn:hover { background: #c0392b; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); }
+
+/* --- STATS CARDS HOVER --- */
 .stats-container {
   display: flex;
   gap: 20px;
@@ -45,33 +43,38 @@
 .stat-card {
   flex: 1;
   background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+  cursor: default;
+  border-left: 6px solid #ddd;
 }
 
-.blue-border { border-left: 5px solid #3498db; }
-.green-border { border-left: 5px solid #27ae60; }
-
-.stat-content {
-  display: flex;
-  justify-content: space-between;
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
 }
 
-.stat-content p {
-  color: #7f8c8d;
-  margin: 0;
-}
+.blue-border { border-left-color: #3498db; }
+.green-border { border-left-color: #27ae60; }
 
 .stat-icon {
-  opacity: 0.2;
+  opacity: 0.15;
+  transition: all 0.4s ease;
 }
 
-/* Table Styling */
+.stat-card:hover .stat-icon {
+  opacity: 0.4;
+  transform: scale(1.2) rotate(-10deg);
+  color: inherit;
+}
+
+/* --- TABLE ROWS HOVER --- */
 .table-wrapper {
-  background-color: white;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.04);
   overflow: hidden;
 }
 
@@ -81,31 +84,50 @@
 }
 
 .admin-table th {
-  padding: 15px;
-  background-color: #ecf0f1;
-  color: #34495e;
+  background: #07f643;
+  padding: 16px;
   text-align: left;
-  border-bottom: 2px solid #ddd;
+  color: black;
+  font-weight: 600;
+  border-bottom: 2px solid #edf2f7;
 }
 
 .admin-table td {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  vertical-align: middle;
+  padding: 16px;
+  border-bottom: 1px solid #f1f1f1;
+  transition: all 0.2s ease;
 }
 
-.route-from { font-weight: bold; }
-.route-to { font-size: 12px; color: #95a5a6; }
-.fare-amount { color: #27ae60; font-weight: bold; }
-
-.admin-table code {
-  background: #f8f9fa;
-  padding: 4px 8px;
-  border-radius: 4px;
+/* Row Hover Effect */
+.admin-table tbody tr {
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
-.no-data {
-  text-align: center;
-  padding: 50px;
-  color: #95a5a6;
+.admin-table tbody tr:hover {
+  background-color: #f6da08;
+  border-left: 4px solid #3498db;
+  transform: scale(1.002);
+}
+
+/* --- OTP BADGE HOVER --- */
+.otp-code {
+  background: #f1f3f5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.admin-table tr:hover .otp-code {
+  background: #0ee9a7;
+  color: white;
+}
+
+/* Utils */
+.fare-amount {
+  color: #3e0df0;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
