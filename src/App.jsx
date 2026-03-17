@@ -8,6 +8,7 @@ import { About } from "./About";
 import { Footer } from "./Footer";
 import { Booknow } from "./Booknow";
 import { Login } from "./Login";
+import { BookingConfirmation } from "./BookingConfirmation";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,6 +44,7 @@ export default function App() {
           <Link to="/Services">Services</Link>
           <Link to="/Contact">Contact</Link>
           <Link to="/Booknow">Booknow</Link>
+        
           {isLoggedIn ? (
             <button
               className="logout-btn"
@@ -63,6 +65,7 @@ export default function App() {
         <Route path="/About" element={<About />} />
         <Route path="/Services" element={<Services />} />
         <Route path="/Contact" element={<Contact />} />
+       <Route path="/BookingConfirmation" element={<BookingConfirmation />} />
         <Route path="/Booknow" element={<Booknow isLoggedIn={isLoggedIn} />} />
         <Route
           path="/Login"

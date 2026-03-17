@@ -28,6 +28,7 @@ export function Footer() {
             <li onClick={() => handleNavigation("/Services")}>🚕 Services</li>
             <li onClick={() => handleNavigation("/Booknow")}>📅 Book Now</li>
             <li onClick={() => handleNavigation("/Contact")}>📞 Contact</li>
+             <li onClick={() => handleNavigation("/Login")}>🗝️ Login</li>
           </ul>
         </div>
 

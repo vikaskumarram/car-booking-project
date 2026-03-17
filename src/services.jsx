@@ -11,7 +11,7 @@ export function Services() {
       <div className="services-box-container">
         <div className="service-row">
           <div className="service-text-box">
-            <h2>1. City Rides (Local Travel)</h2>
+            <h2>Book for Now</h2>
             <h3>
               Whether you need to go anywhere within the city, V-Taxi is at your
               doorstep. Fast and affordable rides for office, shopping, or
@@ -26,7 +26,7 @@ export function Services() {
 
         <div className="service-row reverse">
           <div className="service-text-box">
-            <h2>2. Outstation (Inter-city)</h2>
+            <h2>Outstation (Inter-city)</h2>
             <h3>
               Traveling from one city to another is now even easier. We provide
               one-way and round-trip options at budget-friendly rates. <br />
@@ -41,7 +41,7 @@ export function Services() {
     
         <div className="service-row">
           <div className="service-text-box">
-            <h2>3. Village Connectivity</h2>
+            <h2>Village Connectivity</h2>
             <h3>
               Where big companies don't reach, V-Taxi goes. A safe journey from
               village to city or city to village. <br />
@@ -55,7 +55,7 @@ export function Services() {
 
         <div className="service-row reverse">
           <div className="service-text-box">
-            <h2>4. Rental Packages</h2>
+            <h2>Book by Hour</h2>
             <h3>
               Book a car on an hourly basis. Best for wedding functions,
               business meetings, or a full day of shopping. <br />
@@ -69,7 +69,7 @@ export function Services() {
 
         <div className="service-row">
           <div className="service-text-box">
-            <h2>5. Airport/Railway Transfers</h2>
+            <h2>Airport/Railway Transfers</h2>
             <h3>
               Forget the fear of being late. Guaranteed on-time pick-up and drop
               so that you never miss your flight or train.

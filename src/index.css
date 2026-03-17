@@ -5,18 +5,6 @@ body {
     padding: 0;
 }
 
-.hero-page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 90vh; 
-  padding: 20px;
-  background-image: url("public/white taxi.jpg");
-  height: 43rem;
-}
-
-
-
 /* navbar index................................ */
 .first-logo{
     height: 6rem;
@@ -41,6 +29,9 @@ body {
     gap: 3rem;
     align-items: center;
     padding-left: 0rem;
+    position: sticky; /* Ya fixed */
+    top: 0;
+    z-index: 1000;
     font-family: sans-serif;
 }
 .navbar-taxt{
@@ -251,7 +242,8 @@ body {
 .legal-box p, .brand-text, .support-subtext {
   font-size: 12px;
   color: white;
-  margin-bottom: 15px;
+  margin-top: 0;
+
 }
 
 .app-btns img {
@@ -280,14 +272,14 @@ body {
 
 .tagline {
   font-size: 13px;
-  color: #888;
+  color: #e80e0e;
   font-style: italic;
   margin-bottom: 10px;
 }
 
 .copyright-text {
   font-size: 11px;
-  color: #444;
+  color: #f21212;
   letter-spacing: 1px;
 }
 
@@ -433,27 +425,29 @@ body {
 }
 
 /* contact page css_________________________________________________________ */
+ .contact-image-background{
+    background-image: url("public/login image key.jpg");
+    height: 45rem;
+ }
 .full-contact-container {
     width: 100%;
     min-height: 100vh;
-    margin-top: 1rem;
     display: flex;
     justify-content: center; 
     align-items: center;     
-    padding: 80px 20px;  
 }
 
 .contact-container {
     margin: 1rem;
-    margin-left: 18rem;
-background-color: rgb(77, 215, 215);
+    margin-left: 3rem;
+background-color: azure;
     justify-content: center; 
     align-items: center;  
     width: 100%;
     max-width: 500px;
     padding: 25px;
     border-radius: 20px;
-    
+
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     transition: transform 0.5s ease;
     z-index: 1;
@@ -466,6 +460,7 @@ background-color: rgb(77, 215, 215);
 .contact-container h1 {
     font-size: 35px;
     text-align: center;
+    margin-top: 0;
     color: black;
     margin-bottom: 5px;
     font-weight: 600;
@@ -475,7 +470,8 @@ background-color: rgb(77, 215, 215);
     font-size: 32px;
     text-align: center;
     color: #5c10f4;
-    margin-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
@@ -499,9 +495,10 @@ background-color: rgb(77, 215, 215);
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: azure;
+    background: rgb(242, 251, 4);
     font-size: 15px;
     outline: none;
+    
     box-shadow: inset 4 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -548,11 +545,6 @@ background-color: rgb(77, 215, 215);
   padding: 5px 0;
 }
 
-.admin-icons, .vote-icons {
-  display: flex;
-  gap: 10px;
-}
-
 .icon-btn {
   background: black !important; 
   border: 1px solid #ddd !important; 
@@ -568,14 +560,14 @@ background-color: rgb(77, 215, 215);
   color: #27ae60 !important; 
 }
 .edit-btn:hover {
-  background: #e8f5e9 !important;
+  background: #190cd1 !important;
 }
 
 .delete-btn {
   color: #e74c3c !important;
 }
 .delete-btn:hover {
-  background: #fdeaea !important;
+  background: azure  !important;
 }
 .like-btn, .dislike-btn {
   color: #f1c40f !important;
@@ -588,11 +580,15 @@ background-color: rgb(77, 215, 215);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 /* edit,delete,like,dislike btn___________________________ */
+
 /* Choose button ko alag rakhein */
 .select-btn {
   width: 100%;
   background-color: black;
+  height: 3rem;
   color: white;
+  justify-content: center;
+  font-size: 1.5rem;
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
@@ -714,29 +710,57 @@ height: 2rem;
 margin-left: 1.5rem;
 }
 
+
+/* home page ___________________________________ */
 .ride-container {
   background: azure;
-  padding: 40px;
+  padding: 20px;
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(233, 5, 5, 0.1);
   width: 100%;
   max-width: 480px; 
   text-align: center;
 }
+.main-title{
+    margin-top: 0;
+    font-family: sans-serif;
+}
+
+/* Confirm Booking Button Decoration */
+.main-book-btn {
+  background: blue;
+  color: white !important;
+  padding: 12px 20px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 1rem !important; 
+  cursor: pointer;
+  transition: all 0.5s ease-in-out !important;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3) !important; /* Soft Green Shadow */
+  width: 100%;
+  max-width: 250px;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+.main-btn:hover {
+  background: linear-gradient(135deg, #08fc6d 0%, #2ecc71 100%) !important;
+  transform: translateY(.5re) !important;
+  box-shadow: 0 6px 20px rgba(65, 37, 221, 0.4) !important;
+}
+
+.main-btn:active {
+  transform: translateY(2px) !important;
+}
 
 .selected-car-big-card {
-  background: #fffdf2;
+  background: white;
   border: 2px solid #ffcc00;
   border-radius: 16px;
-  padding: 20px;
-  margin: 20px 0;
   position: relative;
   display: flex;
   justify-content: center;
 }
-
-
-
 .card-badge {
   position: absolute;
   top: -10px; background: #ffcc00;
@@ -756,7 +780,7 @@ margin-left: 1.5rem;
 .input-group { margin-bottom: 20px; }
 
 .field-box {
-  background: whitesmoke;
+  background:white;
   margin: 10px 0;
   padding: 12px;
   height: 2rem;
@@ -777,7 +801,7 @@ margin-left: 1.5rem;
   left: 0;
   right: 0;
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid #d721c5;
   border-radius: 8px;
   max-height: 200px; 
   overflow-y: auto;
@@ -789,7 +813,7 @@ margin-left: 1.5rem;
 
 .suggestion-list li {
   padding: 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #c61313;
   cursor: pointer;
   text-align: left;
 }
@@ -813,11 +837,12 @@ margin-left: 1.5rem;
   animation: slideDown 0.5s ease;
 }
 
+
 /* footer page css_________________________________________________________________ */
 .footer-container {
   background-color: #1a2a6c;
   color: #ffffff;
-  padding: 50px 5% 20px;
+  padding: 20px 5% 20px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -865,7 +890,7 @@ margin-left: 1.5rem;
   padding-left: 5px;
 }
 .footer-bottom {
-  margin-top: 40px;
+  margin-top: 10px;
   padding-top: 30px;
   border-top: 1px solid azure;
   text-align: center;
@@ -923,34 +948,39 @@ body, html {
   background-color: #f4f4f4;
 }
 
-
-
 /* login page css__________________________________________________________ */
 .login-container {
   display: flex;
-  justify-content: center; 
+  justify-content: right; 
   align-items: center;     
   min-height: 100vh;      
   width: 100%;
-  background-image: url("public/login image key.jpg");    
+  background-image: url('/login main key.jpg');
+  background-size: cover;
+  background-position: center;  
+  height: 40rem; 
+  background-repeat: no-repeat;
   
 }
 
 .login-form {
-  background: white;
-  padding: 50px 40px;
+  background: azure;
+  margin-right: 3rem;
+  padding: 20px 20px;
+  height: 25rem;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 420px;       
   text-align: center;
+    transition: 0.5s;
 }
 
 .login-title {
   margin-bottom: 30px;
   font-size: 28px;
   font-weight: 700;
-  color: #222;
+  color: black;
 }
 
 .login-input {
@@ -970,12 +1000,12 @@ body, html {
 
 .login-button {
   width: 100%;
-  padding: 14px;
+  padding: 10px;
   background-color: var(--primary-color);
   border: black;
   border-radius: 10px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 24px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -984,10 +1014,13 @@ body, html {
   background-color: rgb(18, 225, 73);
   transform: translateY(-2px);
 }
+.login-form:hover{
+      transform: translateY(-8px);
+}
 
 .toggle-link {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   cursor: pointer;
   display: inline-block;
@@ -998,19 +1031,10 @@ body, html {
   text-decoration: underline;
 }
 
-@keyframes slideDown {
-    0% {
-        top: -100px;
-        opacity: 0;
-    }
-    100% {
-        top: 30px;
-        opacity: 1;
-    }
-}
+
 .logout-btn {
     background: #e74c3c !important; 
-    width: 8rem;
+    width: 7rem;
     color: white !important;
     padding: 8px 15px !important;
     border-radius: 5px !important;
@@ -1035,7 +1059,7 @@ body, html {
     max-width: 1000px;
     padding: 12px 20px;
     border-radius: 25px;
-    border: 2px solid #ddd;
+    border: 2px solid rgb(176, 120, 120);
     font-size: 16px;
     font-family: sans-serif;
     outline: none;
@@ -1044,7 +1068,7 @@ body, html {
 }
 
 .search-input:focus {
-    border-color: #e30c98; 
+    border-color: #f40ac9; 
 }
 
 .no-results {
@@ -1056,3 +1080,198 @@ body, html {
 }
 
 
+/* cancil button_____________________________ */
+/* Notification Styles */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  color: white;
+  border-radius: 8px;
+  z-index: 10000;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: slideIn 0.5s ease;
+}
+
+.success-toast { background-color: #05f368; } 
+.error-toast { background-color: #f52008; }   
+
+/* Modal Buttons Side-by-Side */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.done-btn {
+  background-color: #05fa6b;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 1s;
+}
+
+.cancel-btn {
+  background-color: #fa1d04;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  width: 5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 1s;
+}
+
+
+/* --- Booking Card Component Styles --- */
+.close-x {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.close-x:hover { color: #e74c3c; }
+
+.booking-success-card {
+  position: relative;
+  background: white;
+  width: 90%;
+  max-width: 380px;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+  border-top: 8px solid #27ae60;
+  animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #b82f5d;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.booked-img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  text-align: left;
+  font-size: 13px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.reg-no {
+  background: #2c3e50;
+  color: #f1c40f;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+/* --- Receipt Card New Styles --- */
+.receipt-card {
+  background: white;
+  width: 95%;
+  max-width: 380px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  animation: slideIn 0.4s ease-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.receipt-header {
+  background: #27ae60;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.receipt-header h3 { margin: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.receipt-header p { margin: 5px 0 0; font-size: 11px; opacity: 0.8; }
+
+.receipt-body { padding: 20px; background: #fff; }
+
+.receipt-img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+}
+
+.receipt-info { 
+  border-top: 2px dashed #eee; 
+  padding-top: 15px; 
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.receipt-row span { color: #777; font-weight: 500; }
+
+.status-badge {
+  background: #eafaf1;
+  color: #04f267;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 11px;
+  border: 1px solid #c6ee14;
+}
+
+.close-receipt-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background: #2c3e50;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.close-receipt-btn:hover { background: #1873c8; }
+
+.home-main-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.home-main-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}

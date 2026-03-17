@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pencil, Trash2, ThumbsUp, ThumbsDown } from "lucide-react";
+import { Trash2, Edit, ThumbsUp, ThumbsDown } from "lucide-react"; // Edit icon add kiya
 import "./index.css";
 
 export function Booknow({ isLoggedIn }) {
@@ -26,20 +26,10 @@ export function Booknow({ isLoggedIn }) {
     }
   };
 
+  // Edit function (Aap yahan edit ka logic likh sakte hain)
   const handleEdit = (car) => {
-    const newName = prompt("Naya car naam enter karein:", car.name);
-    if (newName) {
-      fetch(`${API_URL}/${car.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...car, name: newName }),
-      })
-        .then((res) => res.json())
-        .then((updatedCar) => {
-          setCars(cars.map((c) => (c.id === car.id ? updatedCar : c)));
-          alert("Car detail update ho gayi! ✏️");
-        });
-    }
+    alert(`Editing ${car.name}... (Iska logic aap add kar sakte hain)`);
+    // Example: navigate(`/edit-car/${car.id}`);
   };
 
   const handleVote = (id, type) => {
@@ -47,8 +37,7 @@ export function Booknow({ isLoggedIn }) {
       cars.map((car) => {
         if (car.id === id) {
           let currentRating = parseFloat(car.rating);
-          let newRating =
-            type === "up" ? currentRating + 0.1 : currentRating - 0.1;
+          let newRating = type === "up" ? currentRating + 0.1 : currentRating - 0.1;
           return { ...car, rating: newRating.toFixed(1) };
         }
         return car;
@@ -62,7 +51,9 @@ export function Booknow({ isLoggedIn }) {
 
   const handleChoose = (car) => {
     if (isLoggedIn) {
-      navigate("/", { state: { selectedCar: car } });
+      alert(`Aapne ${car.name} choose ki hai! Ab location bhariye.`);
+      localStorage.setItem("selectedCar", JSON.stringify(car));
+      navigate("/"); 
     } else {
       alert("⚠️ First login your account or Signup to book a ride!");
       navigate("/login");
@@ -95,53 +86,40 @@ export function Booknow({ isLoggedIn }) {
                     <span className="car-rating">⭐ {car.rating}</span>
                   </div>
 
-                  {/* 🛠️ Fixed Action Bar: Icons Amne-Samne */}
                   <div className="action-bar">
-                    <div className="admin-group">
+                    {/* Admin validation hata diya, ab icons hamesha dikhenge */}
+                    <div className="admin-group" style={{ display: 'flex', gap: '8px' }}>
                       <button
                         onClick={() => handleEdit(car)}
                         className="icon-btn edit-btn"
                         title="Edit"
                       >
-                        <Pencil size={20} />
+                        <Edit size={20} color="#007bff" />
                       </button>
                       <button
                         onClick={() => handleDelete(car.id)}
                         className="icon-btn delete-btn"
                         title="Delete"
                       >
-                        <Trash2 size={20} />
+                        <Trash2 size={20} color="#e74c3c" />
                       </button>
                     </div>
 
                     <div className="vote-group">
-                      <button
-                        onClick={() => handleVote(car.id, "up")}
-                        className="icon-btn like-btn"
-                        title="Like"
-                      >
+                      <button onClick={() => handleVote(car.id, "up")} className="icon-btn like-btn">
                         <ThumbsUp size={20} />
                       </button>
-                      <button
-                        onClick={() => handleVote(car.id, "down")}
-                        className="icon-btn dislike-btn"
-                        title="Dislike"
-                      >
+                      <button onClick={() => handleVote(car.id, "down")} className="icon-btn dislike-btn">
                         <ThumbsDown size={20} />
                       </button>
                     </div>
                   </div>
 
-                  <p className="car-type">
-                    {car.type} • {car.eta} away
-                  </p>
+                  <p className="car-type">{car.type} • {car.eta} away</p>
                   <p className="car-price">₹{car.price_per_km}/km</p>
                 </div>
 
-                <button
-                  className="select-btn"
-                  onClick={() => handleChoose(car)}
-                >
+                <button className="select-btn" onClick={() => handleChoose(car)}>
                   Choose
                 </button>
               </div>

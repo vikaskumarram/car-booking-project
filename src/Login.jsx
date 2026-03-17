@@ -1,5 +1,3 @@
-
-
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,19 +11,19 @@ export function Login({ setIsLoggedIn }) {
   // 1. Simple Strength Logic (Sirf length aur number par)
   const getStrength = (password) => {
     let strengthCount = 0;
-    if (password.length > 0) strengthCount++; // Kuch toh likha hai
-    if (password.length >= 6) strengthCount++; // 6 characters poore hain
-    if (/\d/.test(password)) strengthCount++; // Ek number bhi hai
-    return strengthCount; // 0 se 3 tak value
+    if (password.length > 0) strengthCount++;
+    if (password.length >= 6) strengthCount++;
+    if (/\d/.test(password)) strengthCount++;
+    return strengthCount;
   };
 
   const handleForgotPassword = () => {
     const email = prompt("Please enter your registered Email Address:");
     if (email) {
       if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-        alert(`A password reset link has been sent to: ${email} ✅`);
+        alert("A password reset link has been sent to: ${email} ");
       } else {
-        alert("Please enter a valid email address! ❌");
+        alert("Please enter a valid email address! ");
       }
     }
   };
