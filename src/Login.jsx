@@ -8,7 +8,6 @@ export function Login({ setIsLoggedIn }) {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // 1. Simple Strength Logic (Sirf length aur number par)
   const getStrength = (password) => {
     let strengthCount = 0;
     if (password.length > 0) strengthCount++;
@@ -21,9 +20,9 @@ export function Login({ setIsLoggedIn }) {
     const email = prompt("Please enter your registered Email Address:");
     if (email) {
       if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-        alert("A password reset link has been sent to: ${email} ");
+        alert(`A password reset link has been sent to: ${email}`);
       } else {
-        alert("Please enter a valid email address! ");
+        alert("Please enter a valid email address!");
       }
     }
   };
@@ -36,15 +35,11 @@ export function Login({ setIsLoggedIn }) {
     },
     validate: (values) => {
       let errors = {};
-
-      // Username: Sirf 4 letters min aur no space
       if (!values.username) {
         errors.username = "Username is required";
       } else if (values.username.length < 4) {
         errors.username = "Username must be at least 4 characters";
       }
-
-      // Password: Sirf 6 characters aur 1 number ki shart
       if (!values.password) {
         errors.password = "Password is required";
       } else if (values.password.length < 6) {
@@ -52,12 +47,38 @@ export function Login({ setIsLoggedIn }) {
       } else if (!/\d/.test(values.password)) {
         errors.password = "Password must include at least one number";
       }
-
       return errors;
     },
-    onSubmit: () => {
-      const msg = isLogin ? "Login Successful 🎉" : "Signup Successful 🎉";
-      setNotification(msg);
+    onSubmit: (values) => {
+      // --- NAYA LOGIC YAHAN HAI ---
+      const savedUser = JSON.parse(localStorage.getItem("userCredentials"));
+
+      if (isLogin) {
+        // Login Mode: Check user exists
+        if (!savedUser || savedUser.username !== values.username) {
+          alert(
+            "User not found or incorrect username! Please create an account first.",
+          );
+          setIsLogin(false); // Direct Signup card par le jayega
+          return;
+        }
+
+        if (savedUser.password !== values.password) {
+          alert("Incorrect Password! Please try again.");
+          return;
+        }
+
+        setNotification("Login Successful 🎉");
+      } else {
+        // Signup Mode: Save User
+        localStorage.setItem("userCredentials", JSON.stringify(values));
+        alert("Signup Successful! ✅ You can now log in.");
+        setNotification("Signup Successful 🎉");
+        setIsLogin(true); // Signup ke baad Login mode par bhej dega
+        formik.resetForm();
+        return;
+      }
+
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "true");
       setTimeout(() => {
@@ -138,7 +159,6 @@ export function Login({ setIsLoggedIn }) {
           </span>
         </div>
 
-        {/* --- 🔋 Simple Strength Bar --- */}
         <div
           style={{
             height: "4px",
