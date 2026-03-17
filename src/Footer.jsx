@@ -28,7 +28,14 @@ export function Footer() {
             <li onClick={() => handleNavigation("/Services")}>🚕 Services</li>
             <li onClick={() => handleNavigation("/Booknow")}>📅 Book Now</li>
             <li onClick={() => handleNavigation("/Contact")}>📞 Contact</li>
-             <li onClick={() => handleNavigation("/Login")}>🗝️ Login</li>
+            <li onClick={() => handleNavigation("/Login")}>🗝️ Login</li>
+            {/* --- Naya Admin Dashboard Button --- */}
+            <li 
+              onClick={() => handleNavigation("/admin")} 
+              style={{ color: "#f39c12", fontWeight: "bold" }}
+            >
+              📊 Admin Dashboard
+            </li>
           </ul>
         </div>
 

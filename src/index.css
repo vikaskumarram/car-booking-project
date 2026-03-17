@@ -1270,8 +1270,3 @@ body, html {
   align-items: flex-start;
 }
 
-.home-main-layout {
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: flex-start;
-}

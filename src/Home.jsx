@@ -1,22 +1,9 @@
 import "./index.css";
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Printer } from "lucide-react";
-
-const cityDistances = {
-  "Aligarh, UP-Mathura, UP": 65,
-  "Mathura, UP-Aligarh, UP": 65,
-  "Lucknow, UP-Kanpur, UP": 95,
-  "Kanpur, UP-Lucknow, UP": 95,
-  "Lucknow, UP-Varanasi, UP": 310,
-  "Varanasi, UP-Lucknow, UP": 310,
-  "Delhi, NCR-Noida, UP": 35,
-  "Noida, UP-Delhi, NCR": 35,
-  "Delhi, NCR-Agra, UP": 230,
-  "Agra, UP-Delhi, NCR": 230,
-  "Lucknow, UP-Delhi, NCR": 530,
-  "Delhi, NCR-Lucknow, UP": 530,
-};
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Printer, Settings, MapPin, Clock, Calendar } from "lucide-react"; 
+// Sahi extension ke saath import
+import { cityDistances, citiesList } from "./cityData.jsx";
 
 export function Home() {
   const location = useLocation();
@@ -43,18 +30,6 @@ export function Home() {
   const [suggestions, setSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null);
 
-  const cities = [
-    "Lucknow, UP",
-    "Kanpur, UP",
-    "Varanasi, UP",
-    "Agra, UP",
-    "Noida, UP",
-    "Delhi, NCR",
-    "Mumbai, Maharashtra",
-    "Mathura, UP",
-    "Aligarh, UP",
-  ];
-
   const handlePrint = () => window.print();
 
   const handleInputChange = (e, field) => {
@@ -65,7 +40,7 @@ export function Home() {
     setActiveField(field);
 
     if (val.length > 0) {
-      const filtered = cities.filter((c) =>
+      const filtered = citiesList.filter((c) =>
         c.toLowerCase().includes(val.toLowerCase()),
       );
       setSuggestions(filtered);
@@ -96,8 +71,9 @@ export function Home() {
     setIsBooked(true);
   };
 
+  // --- ADMIN SAVING LOGIC ---
   const handleFinalDone = () => {
-    setReceiptData({
+    const newBooking = {
       car: currentCar,
       from: pickup,
       to: drop,
@@ -106,12 +82,17 @@ export function Home() {
       distance: distance,
       fare: distance * currentCar.price_per_km,
       otp: otp,
-    });
+    };
 
+    // LocalStorage mein save karna taaki AdminDashboard dekh sake
+    const existingBookings = JSON.parse(localStorage.getItem("allBookings")) || [];
+    localStorage.setItem("allBookings", JSON.stringify([...existingBookings, newBooking]));
+
+    setReceiptData(newBooking);
     setIsBooked(false);
     setShowFinalReceipt(true);
     setShowForm(false);
-    alert("Booking Confirmed! ✅");
+    alert("Booking Confirmed! ✅ (Saved in Admin Panel)");
   };
 
   const handleCancel = () => {
@@ -122,195 +103,52 @@ export function Home() {
   };
 
   return (
-    <div
-      className="home-main-layout"
-      style={{
-        display: "flex",
-        gap: "20px",
-        padding: "20px",
-        flexWrap: "wrap",
-        justifyContent: "center",
-      }}
-    >
+    <div className="home-main-layout" style={{ display: "flex", flexDirection: "column", minHeight: "100vh", alignItems: "center", padding: "20px" }}>
+      
       {showForm && (
-        <div
-          className="ride-container no-print"
-          style={{ flex: "1", minWidth: "350px", maxWidth: "600px" }}
-        >
+        <div className="ride-container no-print" style={{ flex: "1", width: "100%", maxWidth: "600px" }}>
           <h1 className="main-title">India Moves On Vikas Taxi!</h1>
-
           <div className="input-group" style={{ position: "relative" }}>
             <div className="field-box">
-              <input
-                type="text"
-                placeholder="📍 Pickup"
-                value={pickup}
-                onFocus={() => setActiveField("pickup")}
-                onChange={(e) => handleInputChange(e, "pickup")}
-              />
+              <input type="text" placeholder="📍 Pickup City" value={pickup} onFocus={() => setActiveField("pickup")} onChange={(e) => handleInputChange(e, "pickup")} />
             </div>
             <div className="field-box">
-              <input
-                type="text"
-                placeholder="🏁 Drop"
-                value={drop}
-                onFocus={() => setActiveField("drop")}
-                onChange={(e) => handleInputChange(e, "drop")}
-              />
+              <input type="text" placeholder="🏁 Drop City" value={drop} onFocus={() => setActiveField("drop")} onChange={(e) => handleInputChange(e, "drop")} />
             </div>
 
-            {/* City Suggestions List */}
             {activeField && suggestions.length > 0 && (
-              <ul
-                className="suggestion-list"
-                style={{
-                  position: "absolute",
-                  zIndex: 999,
-                  width: "100%",
-                  background: "white",
-                  border: "1px solid #ddd",
-                  padding: "0",
-                  listStyle: "none",
-                  top: activeField === "pickup" ? "45px" : "95px",
-                }}
-              >
+              <ul className="suggestion-list" style={{ position: "absolute", zIndex: 999, width: "100%", background: "white", border: "1px solid #ddd", top: activeField === "pickup" ? "45px" : "95px", maxHeight: "200px", overflowY: "auto", listStyle: "none", padding: 0 }}>
                 {suggestions.map((city, i) => (
-                  <li
-                    key={i}
-                    onClick={() => selectCity(city)}
-                    style={{
-                      padding: "10px",
-                      cursor: "pointer",
-                      borderBottom: "1px solid #eee",
-                    }}
-                  >
-                    🏢 {city}
-                  </li>
+                  <li key={i} onClick={() => selectCity(city)} style={{ padding: "10px", cursor: "pointer", borderBottom: "1px solid #eee" }}>🏢 {city}</li>
                 ))}
               </ul>
             )}
 
             <div style={{ display: "flex", gap: "10px", marginTop: "15px" }}>
-              <input
-                type="date"
-                value={rideDate}
-                onChange={(e) => setRideDate(e.target.value)}
-                style={{ flex: 1, padding: "10px" }}
-              />
-              <input
-                type="time"
-                value={rideTime}
-                onChange={(e) => setRideTime(e.target.value)}
-                style={{ flex: 1, padding: "10px" }}
-              />
+              <input type="date" value={rideDate} onChange={(e) => setRideDate(e.target.value)} style={{ flex: 1, padding: "12px", borderRadius: "8px", border: "1px solid #ccc" }} />
+              <input type="time" value={rideTime} onChange={(e) => setRideTime(e.target.value)} style={{ flex: 1, padding: "12px", borderRadius: "8px", border: "1px solid #ccc" }} />
             </div>
           </div>
-          <button
-            className="main-book-btn"
-            style={{ marginTop: "20px" }}
-            onClick={handleBook}
-          >
-            Confirm Ride
-          </button>
+          <button className="main-book-btn" style={{ marginTop: "20px", width: "100%" }} onClick={handleBook}>Confirm Ride</button>
         </div>
       )}
 
       {showFinalReceipt && receiptData && (
-        <div
-          className="side-receipt-container"
-          style={{ flex: "1", maxWidth: "400px", margin: "0 auto" }}
-        >
-          <div
-            className="receipt-card printable-receipt"
-            style={{
-              border: "2px solid #27ae60",
-              background: "#fff",
-              borderRadius: "15px",
-            }}
-          >
-            <div
-              className="receipt-header"
-              style={{
-                background: "#27ae60",
-                padding: "15px",
-                color: "white",
-                textAlign: "center",
-              }}
-            >
-              <h2 style={{ margin: 0 }}>V-TAXI RECEIPT</h2>
+        <div className="side-receipt-container" style={{ width: "100%", maxWidth: "400px" }}>
+          <div className="receipt-card printable-receipt" style={{ border: "2px solid #27ae60", background: "#fff", borderRadius: "15px", overflow: "hidden" }}>
+            <div style={{ background: "#27ae60", padding: "15px", color: "white", textAlign: "center" }}><h2 style={{ margin: 0 }}>V-TAXI RECEIPT</h2></div>
+            <div style={{ padding: "20px" }}>
+                <p><strong>OTP:</strong> {receiptData.otp}</p>
+                <p><strong>Car:</strong> {receiptData.car.name}</p>
+                <p><strong>Route:</strong> {receiptData.from} ➔ {receiptData.to}</p>
+                <p><strong>Distance:</strong> {receiptData.distance} KM</p>
+                <p><strong>Date:</strong> {receiptData.date} | {receiptData.time}</p>
+                <hr />
+                <h3 style={{ color: "#27ae60" }}>Total Fare: ₹{receiptData.fare}</h3>
             </div>
-
-            <div className="receipt-body" style={{ padding: "20px" }}>
-              <div className="receipt-info">
-                <div className="receipt-row">
-                  <span>OTP:</span> <strong>{receiptData.otp}</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>Car:</span> <strong>{receiptData.car.name}</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>From:</span> <strong>{receiptData.from}</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>To:</span> <strong>{receiptData.to}</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>Distance:</span>{" "}
-                  <strong>{receiptData.distance} KM</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>Date:</span> <strong>{receiptData.date}</strong>
-                </div>
-                <div className="receipt-row">
-                  <span>Total Fare:</span>{" "}
-                  <strong style={{ fontSize: "1.2rem" }}>
-                    ₹{receiptData.fare}
-                  </strong>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="no-print"
-              style={{
-                display: "flex",
-                gap: "10px",
-                padding: "15px",
-                background: "#eee",
-              }}
-            >
-              <button
-                onClick={handlePrint}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  background: "#27ae60",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "5px",
-                }}
-              >
-                <Printer size={18} /> Print
-              </button>
-              <button
-                onClick={() => navigate("/booknow")}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  background: "#333",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                }}
-              >
-                Finish
-              </button>
+            <div className="no-print" style={{ display: "flex", gap: "10px", padding: "15px", background: "#f1f1f1" }}>
+              <button onClick={handlePrint} style={{ flex: 1, padding: "10px", background: "#27ae60", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}><Printer size={16} /> Print</button>
+              <button onClick={() => navigate("/booknow")} style={{ flex: 1, padding: "10px", background: "#333", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Finish</button>
             </div>
           </div>
         </div>
@@ -318,39 +156,23 @@ export function Home() {
 
       {isBooked && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content" style={{ padding: "30px", background: "white", borderRadius: "10px", textAlign: "center" }}>
             <h2>Finalize Booking?</h2>
             <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-              <button
-                onClick={handleFinalDone}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  background: "#007bff",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                }}
-              >
-                Done
-              </button>
-              <button
-                onClick={handleCancel}
-                style={{
-                  flex: 1,
-                  padding: "12px",
-                  background: "#e74c3c",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                }}
-              >
-                Cancel
-              </button>
+              <button onClick={handleFinalDone} style={{ flex: 1, padding: "12px", background: "#007bff", color: "white", border: "none", borderRadius: "5px" }}>Done</button>
+              <button onClick={handleCancel} style={{ flex: 1, padding: "12px", background: "#e74c3c", color: "white", border: "none", borderRadius: "5px" }}>Cancel</button>
             </div>
           </div>
         </div>
       )}
+
+      {/* --- PROFESSIONAL FOOTER WITH ADMIN LINK --- */}
+      <footer className="no-print" style={{ width: "100%", marginTop: "auto", paddingTop: "40px", paddingBottom: "20px", textAlign: "center", borderTop: "1px solid #eee", color: "#888" }}>
+        <p style={{ margin: "5px 0" }}>© 2026 <strong>V-Taxi Service</strong> | Built by Vikas</p>
+        <Link to="/admin" style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#bbb", textDecoration: "none", fontSize: "12px", marginTop: "10px" }}>
+           <Settings size={14} /> Admin Access
+        </Link>
+      </footer>
     </div>
   );
 }
