@@ -57,29 +57,45 @@ export function Login({ setIsLoggedIn }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               username: values.username.trim(),
-              password: values.password.trim()
+              password: values.password.trim(),
             }),
           });
 
           const data = await response.json();
 
           if (response.ok) {
+            // --- PROFILE LOGIC START ---
+            // Signup ke waqt save ki gayi details nikalna
+            const savedCredentials = JSON.parse(
+              localStorage.getItem("userCredentials"),
+            );
+
             localStorage.setItem("token", data.token);
             localStorage.setItem("isLoggedIn", "true");
-            localStorage.setItem("user", JSON.stringify({
-              name: data.user.username,
-              profilePic: values.profilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-              email: values.email || "user@vtaxi.com"
-            }));
+
+            localStorage.setItem(
+              "user",
+              JSON.stringify({
+                name: data.user.username,
+                // Agar signup mein photo thi toh wo, nahi toh default
+                profilePic:
+                  savedCredentials?.profilePic ||
+                  values.profilePic ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+                email:
+                  savedCredentials?.email || values.email || "user@vtaxi.com",
+              }),
+            );
+            // --- PROFILE LOGIC END ---
 
             setNotification("Login Successful 🎉");
             setIsLoggedIn(true);
 
             setTimeout(() => {
               setNotification("");
-              // --- Yahan badlav kiya gaya hai ---
-              navigate("/Booknow"); 
+              navigate("/Booknow");
               window.scrollTo(0, 0);
+              window.location.reload(); // Navbar update karne ke liye
             }, 1500);
           } else {
             alert(data.error || "Invalid Credentials! ❌");
@@ -88,6 +104,7 @@ export function Login({ setIsLoggedIn }) {
           alert("Backend is not running! ❌ Please start your Flask server.");
         }
       } else {
+        // Signup: Yahan details hamesha ke liye save ho jayengi
         localStorage.setItem("userCredentials", JSON.stringify(values));
         alert("Signup Successful! ✅ Please login.");
         setIsLogin(true);
@@ -96,7 +113,9 @@ export function Login({ setIsLoggedIn }) {
     },
   });
 
-  const strength = formik.values.password ? getStrength(formik.values.password) : 0;
+  const strength = formik.values.password
+    ? getStrength(formik.values.password)
+    : 0;
 
   const handleSubmitWithCheck = (e) => {
     e.preventDefault();
@@ -140,7 +159,7 @@ export function Login({ setIsLoggedIn }) {
             <input
               name="profilePic"
               type="text"
-              placeholder="Profile Picture URL (Optional)"
+              placeholder="Profile Picture URL (Paste image link)"
               onChange={formik.handleChange}
               value={formik.values.profilePic}
               className="login-input"
@@ -160,23 +179,50 @@ export function Login({ setIsLoggedIn }) {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            style={{ position: "absolute", right: "12px", top: "25%", cursor: "pointer" }}
+            style={{
+              position: "absolute",
+              right: "12px",
+              top: "25%",
+              cursor: "pointer",
+            }}
           >
             {showPassword ? "🫣" : "👁️"}
           </span>
         </div>
 
-        <div style={{ height: "4px", width: "100%", background: "#ddd", borderRadius: "5px", marginBottom: "15px", overflow: "hidden" }}>
-          <div style={{ 
-            height: "100%", 
-            width: `${(strength / 3) * 100}%`, 
-            backgroundColor: strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21", 
-            transition: "width 0.3s ease" 
-          }}></div>
+        <div
+          style={{
+            height: "4px",
+            width: "100%",
+            background: "#ddd",
+            borderRadius: "5px",
+            marginBottom: "15px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: `${(strength / 3) * 100}%`,
+              backgroundColor:
+                strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21",
+              transition: "width 0.3s ease",
+            }}
+          ></div>
         </div>
 
         {isLogin && (
-          <p onClick={handleForgotPassword} style={{ textAlign: "right", fontSize: "13px", color: "#e74c3c", cursor: "pointer", marginTop: "-5px", marginBottom: "15px" }}>
+          <p
+            onClick={handleForgotPassword}
+            style={{
+              textAlign: "right",
+              fontSize: "13px",
+              color: "#e74c3c",
+              cursor: "pointer",
+              marginTop: "-5px",
+              marginBottom: "15px",
+            }}
+          >
             Forgot Password?
           </p>
         )}
@@ -185,8 +231,13 @@ export function Login({ setIsLoggedIn }) {
           {isLogin ? "Login" : "Signup"}
         </button>
 
-        <p onClick={() => setIsLogin(!isLogin)} style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}>
-          {isLogin ? "Don't have an account? Signup" : "Already have an account? Login"}
+        <p
+          onClick={() => setIsLogin(!isLogin)}
+          style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}
+        >
+          {isLogin
+            ? "Don't have an account? Signup"
+            : "Already have an account? Login"}
         </p>
       </form>
     </div>
