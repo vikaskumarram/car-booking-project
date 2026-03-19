@@ -33,14 +33,16 @@ export default function App() {
         }
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // <--- Yahan khali array [] rakhein aur upar wali comment line add karein
+
+  }, []); 
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout? 🤔")) {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("user");
-      // ✅ Yahan bhi spelling check kar li hai
+    
       setIsLoggedIn(false);
       setUser(null);
       setShowDropdown(false);

@@ -28,7 +28,7 @@ export function Booknow({ isLoggedIn }) {
   const handleDelete = (id) => {
     if (!isAdmin) {
       alert("⚠️ Access Denied! Only the authorized Admin can delete cars.");
-      return; // Page redirect nahi hoga
+      return;
     }
 
     if (window.confirm("Are you sure you want to delete this car?")) {
@@ -45,7 +45,7 @@ export function Booknow({ isLoggedIn }) {
       alert(
         "⚠️ Access Denied! You do not have permission to edit car details.",
       );
-      return; // Page redirect nahi hoga
+      return; 
     }
 
     const confirmEdit = window.confirm(`Do you want to edit ${car.name}?`);

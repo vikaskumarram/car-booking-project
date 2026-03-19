@@ -125,7 +125,7 @@ export function Home() {
             </div>
 
             {activeField && suggestions.length > 0 && (
-              <ul className="suggestion-list" style={{ position: "absolute", zIndex: 999, width: "100%", background: "white", border: "1px solid #ddd", top: activeField === "pickup" ? "45px" : "95px", maxHeight: "200px", overflowY: "auto", listStyle: "none", padding: 0, borderRadius: "8px" }}>
+              <ul className="suggestion-list" style={{ position: "absolute", zIndex: 999, width: "100%", background: "white", border: "1px solid #ddd", top: activeField === "pickup" ? "45px" : "95px", maxHeight: "200px",  overflowY: "auto", listStyle: "none", padding: 0, borderRadius: "8px" }}>
                 {suggestions.map((city, i) => (
                   <li key={i} onClick={() => selectCity(city)} style={{ padding: "12px", cursor: "pointer", borderBottom: "1px solid #eee" }}>🏢 {city}</li>
                 ))}
@@ -191,7 +191,7 @@ export function Home() {
             </div>
           ) : (
             <div style={{ marginTop: "20px", padding: "20px", background: "#fff3cd", borderRadius: "12px", textAlign: "center", border: "1px solid #ffeeba" }}>
-              <p style={{ color: "#856404", margin: 0, fontSize: "16px" }}>⚠️ Please <Link to="/booknow" style={{ fontWeight: "bold", color: "#856404" }}>Choose a Car</Link> first.</p>
+              <p style={{ color: "#856404", margin: 0, fontSize: "16px" }}>⚠️ Please <Link to="/booknow" style={{ fontWeight: "bold", color: "#fb0bc7" }}>Choose a Car</Link> first.</p>
             </div>
           )}
 

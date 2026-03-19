@@ -7,7 +7,7 @@ export function AdminDashboard() {
   const ADMIN_EMAIL = "jaivikash609@gmail.com";
 
   useEffect(() => {
-    // --- 1. Function ko andar hi define kar diya (Ab error kabhi nahi aayega) ---
+    
     const loadBookings = () => {
       try {
         const savedData = localStorage.getItem("allBookings");
@@ -21,22 +21,22 @@ export function AdminDashboard() {
       }
     };
 
-    // --- 2. Pehli baar load karne ke liye ---
+  
     loadBookings();
 
-    // --- 3. Har 5 second mein check karne ke liye ---
+    
     const interval = setInterval(loadBookings, 5000);
 
-    // Cleanup function
+    
     return () => clearInterval(interval);
-  }, []); // Empty array ka matlab page load par ek hi baar chalega
+  }, []); 
 
   const totalRevenue = bookings.reduce(
     (sum, b) => sum + (Number(b.fare) || 0),
     0,
   );
 
-  // Is function ko bahar hi rehne dete hain kyunki ye button click par chalta hai
+
   const handleDeleteAll = () => {
     const confirmEmail = prompt("Please enter Admin Email to delete data:");
     if (confirmEmail === ADMIN_EMAIL) {
@@ -55,7 +55,7 @@ export function AdminDashboard() {
       <div className="admin-header">
         <h1>🚖 V-Taxi Admin Dashboard</h1>
         <div className="header-actions">
-          {/* Refresh ke liye window reload use kar lete hain as a backup */}
+    
           <button
             onClick={() => window.location.reload()}
             className="refresh-btn"

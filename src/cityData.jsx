@@ -19,19 +19,19 @@ export const cityDistances = {
   "Lucknow, UP-Delhi, NCR": 530, "Delhi, NCR-Lucknow, UP": 530,
 
   // --- BIHAR INTERNAL ---
-  "Patna, Bihar-Gaya, Bihar": 100, "Gaya, Bihar-Patna, Bihar": 100,
+  "Patna, Bihar-Gaya, Bihar": 200, "Gaya, Bihar-Patna, Bihar": 200,
   "Patna, Bihar-Muzaffarpur, Bihar": 75, "Muzaffarpur, Bihar-Patna, Bihar": 75,
   "Patna, Bihar-Bhagalpur, Bihar": 250, "Bhagalpur, Bihar-Patna, Bihar": 250,
 
   // --- NATIONAL MAJOR ROUTES ---
   // North
   "Delhi, NCR-Chandigarh, Punjab": 250, "Chandigarh, Punjab-Delhi, NCR": 250,
-  "Delhi, NCR-Jaipur, Rajasthan": 280, "Jaipur, Rajasthan-Delhi, NCR": 280,
+  "Delhi, NCR-Jaipur, Rajasthan": 480, "Jaipur, Rajasthan-Delhi, NCR": 480,
   "Delhi, NCR-Dehradun, Uttarakhand": 240, "Dehradun, Uttarakhand-Delhi, NCR": 240,
   
   // West & Central
   "Mumbai, Maharashtra-Pune, Maharashtra": 150, "Pune, Maharashtra-Mumbai, Maharashtra": 150,
-  "Mumbai, Maharashtra-Surat, Gujarat": 280, "Surat, Gujarat-Mumbai, Maharashtra": 280,
+  "Mumbai, Maharashtra-Surat, Gujarat": 580, "Surat, Gujarat-Mumbai, Maharashtra": 580,
   "Ahmedabad, Gujarat-Mumbai, Maharashtra": 530, "Mumbai, Maharashtra-Ahmedabad, Gujarat": 530,
   "Indore, MP-Bhopal, MP": 195, "Bhopal, MP-Indore, MP": 195,
   
