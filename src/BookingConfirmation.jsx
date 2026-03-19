@@ -68,7 +68,7 @@ export function BookingConfirmation({ isOpen, onClose, data }) {
               background: "#f1fcf4", 
               padding: "8px", 
               borderRadius: "5px",
-              marginTop: "5px",
+              marginTop: "20px",
               border: "1px solid #27ae60"
             }}>
               <strong style={{ color: "#27ae60" }}>Total Amount:</strong> ₹{totalBill}

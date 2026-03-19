@@ -224,7 +224,7 @@ export function Home() {
       {/* --- CONFIRMATION MODAL --- */}
       {isBooked && (
         <div className="modal-overlay" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.7)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1000 }}>
-          <div className="modal-content" style={{ padding: "40px", background: "white", borderRadius: "20px", textAlign: "center", width: "90%", maxWidth: "400px" }}>
+          <div className="modal-content" style={{ padding: "40px", background: "white", borderRadius: "20px", marginTop: "20px", textAlign: "center", width: "90%", maxWidth: "400px" }}>
             <CheckCircle size={60} color="#27ae60" style={{ marginBottom: "20px" }} />
             <h2 style={{ fontSize: "24px", marginBottom: "10px" }}>Confirm Booking?</h2>
             <p style={{ color: "#666" }}>Trip from <strong>{pickup}</strong> to <strong>{drop}</strong></p>
