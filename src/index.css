@@ -1266,8 +1266,9 @@ body, html {
 
 .home-main-layout {
   max-width: 1200px;
+  margin-top: 30px;
   margin: 0 auto;
-  height: 45rem;
+  height: 43rem;
   align-items: flex-start;
 }
 

@@ -12,7 +12,7 @@ export function Booknow({ isLoggedIn }) {
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
-  const API_URL = "https://6971d21b32c6bacb12c49d70.mockapi.io/cardetails";
+  const API_URL = "http://127.0.0.1:5000/api/cars";
 
   // Data Fetching
   useEffect(() => {
@@ -32,18 +32,16 @@ export function Booknow({ isLoggedIn }) {
     }
   };
 
-  // 2. Edit Logic (Alert then Modal)
+  // 2. Edit Logic
   const handleEdit = (car) => {
-    // Pehle alert aayega
     const confirmEdit = window.confirm(`Do you want to edit ${car.name}?`);
-    
     if (confirmEdit) {
       setEditingCar({ ...car }); 
-      setShowModal(true); // OK karne par modal khulega
+      setShowModal(true); 
     }
   };
 
-  // 3. Update Logic (Saving to API)
+  // 3. Update Logic
   const handleUpdate = () => {
     fetch(`${API_URL}/${editingCar.id}`, {
       method: "PUT",
@@ -105,6 +103,7 @@ export function Booknow({ isLoggedIn }) {
             filteredCars.map((car) => (
               <div key={car.id} className="car-card">
                 <div className="car-image">
+                  {/* Default logic removed - simple img tag */}
                   <img src={car.image} alt={car.name} />
                 </div>
 

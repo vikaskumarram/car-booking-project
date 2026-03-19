@@ -32,7 +32,7 @@ export function Footer() {
             {/* --- Naya Admin Dashboard Button --- */}
             <li 
               onClick={() => handleNavigation("/admin")} 
-              style={{ color: "#f39c12", fontWeight: "bold" }}
+              style={{ color: "white", fontWeight: "bold" }}
             >
               📊 Admin Dashboard
             </li>
