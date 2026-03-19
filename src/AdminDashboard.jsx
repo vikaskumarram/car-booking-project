@@ -65,7 +65,7 @@ export function AdminDashboard() {
   return (
     <div className="admin-main">
       <div className="admin-header">
-        <h1>🚖 V-Taxi Admin Dashboard</h1>
+        <h1> Vikas Taxi Admin Dashboard</h1>
         <div className="header-actions">
           <button onClick={loadData} className="refresh-btn"><RefreshCw size={18} /> Refresh</button>
           <button onClick={handleDeleteAll} className="delete-btn"><Trash2 size={18} /> Clear Rides</button>

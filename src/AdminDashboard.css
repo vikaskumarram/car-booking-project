@@ -84,10 +84,10 @@
 }
 
 .admin-table th {
-  background: #07f643;
+  background: black;
   padding: 16px;
   text-align: left;
-  color: black;
+  color: azure;
   font-weight: 600;
   border-bottom: 2px solid #edf2f7;
 }
@@ -142,12 +142,11 @@
 
 .stat-card:hover {
   transform: translateY(-5px);
-  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Active Tab Highlight */
 .active-stat {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: azure !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   transform: scale(1.02);
 }
@@ -167,18 +166,16 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Message Content Styling */
 .route-to {
   font-size: 0.85rem;
-  color: #bdc3c7;
+  color: #ccaf0a;
   margin-top: 4px;
 }
 
-/* No Data Styling */
 .no-data {
   text-align: center;
   padding: 40px !important;
-  color: #7f8c8d;
+  color: #0dd7e6;
   font-style: italic;
   font-size: 1.1rem;
 }
@@ -193,6 +190,6 @@
 .table-wrapper {
   overflow-x: auto;
   border-radius: 8px;
-  background: #1e1e1e;
+  background: azure;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
