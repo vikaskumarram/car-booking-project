@@ -12,13 +12,14 @@ import { BookingConfirmation } from "./BookingConfirmation";
 import { AdminDashboard } from "./AdminDashboard";
 import { EditProfile } from "./EditProfile";
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
-  // Line 21 se 31 tak ye copy karein
   useEffect(() => {
     const userStatus = localStorage.getItem("isLoggedIn");
     const savedUserData = localStorage.getItem("user");
@@ -33,15 +34,13 @@ export default function App() {
         }
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
   }, []); 
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout? 🤔")) {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("user");
+      localStorage.removeItem("token"); // Token bhi remove karein safe rehne ke liye
     
       setIsLoggedIn(false);
       setUser(null);
@@ -54,7 +53,8 @@ export default function App() {
     <>
       <nav className="navbar">
         <div>
-          <img className="first-logo" src="public/v-taxi-logo.JPG" alt="Logo" />
+          {/* Path se /public hata diya hai taaki yellow warning na aaye */}
+          <img className="first-logo" src="/v-taxi-logo.JPG" alt="Logo" />
         </div>
         <div className="navbar-taxt">
           <Link to="/">Home</Link>
@@ -101,6 +101,16 @@ export default function App() {
                     }}
                   >
                     👤 Edit Profile
+                  </div>
+                  {/* Admin ke liye shortcut (Optional) */}
+                  <div
+                    className="dropdown-item"
+                    onClick={() => {
+                      navigate("/admin");
+                      setShowDropdown(false);
+                    }}
+                  >
+                    ⚙️ Admin Panel
                   </div>
                   <div className="dropdown-divider"></div>
                   <div
