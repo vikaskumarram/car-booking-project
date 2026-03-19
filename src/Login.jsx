@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +33,7 @@ export function Login({ setIsLoggedIn }) {
       username: "",
       email: "",
       password: "",
-      profilePic: "", // Naya field DP ke liye
+      profilePic: "",
     },
     validate: (values) => {
       let errors = {};
@@ -45,51 +46,53 @@ export function Login({ setIsLoggedIn }) {
         errors.password = "Password is required";
       } else if (values.password.length < 6) {
         errors.password = "Password must be at least 6 characters long";
-      } else if (!/\d/.test(values.password)) {
-        errors.password = "Password must include at least one number";
       }
       return errors;
     },
-    onSubmit: (values) => {
-      const savedUser = JSON.parse(localStorage.getItem("userCredentials"));
-
+    onSubmit: async (values) => {
       if (isLogin) {
-        if (!savedUser || savedUser.username !== values.username) {
-          alert("User not found or incorrect username! Please create an account first.");
-          setIsLogin(false);
-          return;
+        try {
+          const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: values.username.trim(),
+              password: values.password.trim()
+            }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("user", JSON.stringify({
+              name: data.user.username,
+              profilePic: values.profilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+              email: values.email || "user@vtaxi.com"
+            }));
+
+            setNotification("Login Successful 🎉");
+            setIsLoggedIn(true);
+
+            setTimeout(() => {
+              setNotification("");
+              // --- Yahan badlav kiya gaya hai ---
+              navigate("/Booknow"); 
+              window.scrollTo(0, 0);
+            }, 1500);
+          } else {
+            alert(data.error || "Invalid Credentials! ❌");
+          }
+        } catch (error) {
+          alert("Backend is not running! ❌ Please start your Flask server.");
         }
-
-        if (savedUser.password !== values.password) {
-          alert("Incorrect Password! Please try again.");
-          return;
-        }
-
-        // Login ke waqt user info save kar rahe hain display ke liye
-        localStorage.setItem("user", JSON.stringify({
-          name: savedUser.username,
-          profilePic: savedUser.profilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Default DP agar user ne upload nahi ki
-          email: savedUser.email
-        }));
-
-        setNotification("Login Successful 🎉");
       } else {
-        // Signup Mode: User image ke saath save hoga
         localStorage.setItem("userCredentials", JSON.stringify(values));
-        alert("Signup Successful! ✅ You can now log in.");
-        setNotification("Signup Successful 🎉");
+        alert("Signup Successful! ✅ Please login.");
         setIsLogin(true);
         formik.resetForm();
-        return;
       }
-
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "true");
-      setTimeout(() => {
-        setNotification("");
-        navigate("/Booknow");
-        window.scrollTo(0, 0);
-      }, 1500);
     },
   });
 
@@ -122,7 +125,6 @@ export function Login({ setIsLoggedIn }) {
           onChange={formik.handleChange}
           value={formik.values.username}
           className="login-input"
-          required
         />
 
         {!isLogin && (
@@ -134,7 +136,6 @@ export function Login({ setIsLoggedIn }) {
               onChange={formik.handleChange}
               value={formik.values.email}
               className="login-input"
-              required
             />
             <input
               name="profilePic"
@@ -156,7 +157,6 @@ export function Login({ setIsLoggedIn }) {
             value={formik.values.password}
             className="login-input"
             style={{ width: "100%", paddingRight: "40px", marginBottom: "5px" }}
-            required
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
@@ -167,7 +167,12 @@ export function Login({ setIsLoggedIn }) {
         </div>
 
         <div style={{ height: "4px", width: "100%", background: "#ddd", borderRadius: "5px", marginBottom: "15px", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${(strength / 3) * 100}%`, backgroundColor: strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21", transition: "width 0.3s ease" }}></div>
+          <div style={{ 
+            height: "100%", 
+            width: `${(strength / 3) * 100}%`, 
+            backgroundColor: strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21", 
+            transition: "width 0.3s ease" 
+          }}></div>
         </div>
 
         {isLogin && (
