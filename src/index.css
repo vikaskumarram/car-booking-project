@@ -1271,4 +1271,116 @@ body, html {
   height: 43rem;
   align-items: flex-start;
 }
+/* Dropdown Wrapper */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  width: 160px;
+  padding: 10px 0;
+  z-index: 1000;
+  border: 1px solid #eee;
+  animation: fadeIn 0.2s ease-out;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #eee;
+  margin: 5px 0;
+}
+
+.logout-item {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.logout-item:hover {
+  background: #fff5f5;
+  color: #c0392b;
+}
+
+/* DP border effect */
+.nav-dp {
+  transition: transform 0.2s;
+}
+
+.user-nav-section:hover .nav-dp {
+  transform: scale(1.1);
+}
+
+
+
+/* --- User Profile Section in Navbar --- */
+.user-nav-section {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Naam aur Photo ke beech ki doori */
+  background: rgba(255, 255, 255, 0.1); /* Halka background effect */
+  padding: 5px 12px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.user-name-display {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff; /* Navbar text color ke hisaab se change karein */
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agar naam bada ho toh '...' dikhega */
+}
+
+.user-nav-section img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%; /* Image ko gol karne ke liye */
+  border: 2px solid #007bff; /* Blue border profile ke liye */
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Logout button styling within profile section */
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Mobile responsive check */
+@media (max-width: 768px) {
+  .user-name-display {
+    display: none; /* Mobile par sirf DP dikhegi jagah bachane ke liye */
+  }
+}

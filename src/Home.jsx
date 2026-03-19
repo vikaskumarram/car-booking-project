@@ -227,7 +227,7 @@ export function Home() {
           <div className="modal-content" style={{ padding: "40px", background: "white", borderRadius: "20px", marginTop: "20px", textAlign: "center", width: "90%", maxWidth: "400px" }}>
             <CheckCircle size={60} color="#27ae60" style={{ marginBottom: "20px" }} />
             <h2 style={{ fontSize: "24px", marginBottom: "10px" }}>Confirm Booking?</h2>
-            <p style={{ color: "#666" }}>Trip from <strong>{pickup}</strong> to <strong>{drop}</strong></p>
+            <p style={{ color: "#310ce9" }}>Trip from <strong>{pickup}</strong> to <strong>{drop}</strong></p>
             <div style={{ display: "flex", gap: "10px", marginTop: "30px" }}>
               <button onClick={handleFinalDone} style={{ flex: 1, padding: "14px", background: "#27ae60", color: "white", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer" }}>Confirm</button>
               <button onClick={handleCancel} style={{ flex: 1, padding: "14px", background: "#f1f1f1", color: "#333", border: "none", borderRadius: "10px", cursor: "pointer" }}>Cancel</button>

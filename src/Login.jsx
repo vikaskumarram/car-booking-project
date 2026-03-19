@@ -32,6 +32,7 @@ export function Login({ setIsLoggedIn }) {
       username: "",
       email: "",
       password: "",
+      profilePic: "", // Naya field DP ke liye
     },
     validate: (values) => {
       let errors = {};
@@ -50,16 +51,12 @@ export function Login({ setIsLoggedIn }) {
       return errors;
     },
     onSubmit: (values) => {
-      // --- NAYA LOGIC YAHAN HAI ---
       const savedUser = JSON.parse(localStorage.getItem("userCredentials"));
 
       if (isLogin) {
-        // Login Mode: Check user exists
         if (!savedUser || savedUser.username !== values.username) {
-          alert(
-            "User not found or incorrect username! Please create an account first.",
-          );
-          setIsLogin(false); // Direct Signup card par le jayega
+          alert("User not found or incorrect username! Please create an account first.");
+          setIsLogin(false);
           return;
         }
 
@@ -68,13 +65,20 @@ export function Login({ setIsLoggedIn }) {
           return;
         }
 
+        // Login ke waqt user info save kar rahe hain display ke liye
+        localStorage.setItem("user", JSON.stringify({
+          name: savedUser.username,
+          profilePic: savedUser.profilePic || "https://cdn-icons-png.flaticon.com/512/149/149071.png", // Default DP agar user ne upload nahi ki
+          email: savedUser.email
+        }));
+
         setNotification("Login Successful 🎉");
       } else {
-        // Signup Mode: Save User
+        // Signup Mode: User image ke saath save hoga
         localStorage.setItem("userCredentials", JSON.stringify(values));
         alert("Signup Successful! ✅ You can now log in.");
         setNotification("Signup Successful 🎉");
-        setIsLogin(true); // Signup ke baad Login mode par bhej dega
+        setIsLogin(true);
         formik.resetForm();
         return;
       }
@@ -89,9 +93,7 @@ export function Login({ setIsLoggedIn }) {
     },
   });
 
-  const strength = formik.values.password
-    ? getStrength(formik.values.password)
-    : 0;
+  const strength = formik.values.password ? getStrength(formik.values.password) : 0;
 
   const handleSubmitWithCheck = (e) => {
     e.preventDefault();
@@ -124,15 +126,25 @@ export function Login({ setIsLoggedIn }) {
         />
 
         {!isLogin && (
-          <input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            className="login-input"
-            required
-          />
+          <>
+            <input
+              name="email"
+              type="email"
+              placeholder="Email Address"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              className="login-input"
+              required
+            />
+            <input
+              name="profilePic"
+              type="text"
+              placeholder="Profile Picture URL (Optional)"
+              onChange={formik.handleChange}
+              value={formik.values.profilePic}
+              className="login-input"
+            />
+          </>
         )}
 
         <div style={{ position: "relative", width: "100%" }}>
@@ -148,50 +160,18 @@ export function Login({ setIsLoggedIn }) {
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
-            style={{
-              position: "absolute",
-              right: "12px",
-              top: "25%",
-              cursor: "pointer",
-            }}
+            style={{ position: "absolute", right: "12px", top: "25%", cursor: "pointer" }}
           >
-            {showPassword ? "🙈" : "👁️"}
+            {showPassword ? "🫣" : "👁️"}
           </span>
         </div>
 
-        <div
-          style={{
-            height: "4px",
-            width: "100%",
-            background: "#ddd",
-            borderRadius: "5px",
-            marginBottom: "15px",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              height: "100%",
-              width: `${(strength / 3) * 100}%`,
-              backgroundColor:
-                strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21",
-              transition: "width 0.3s ease",
-            }}
-          ></div>
+        <div style={{ height: "4px", width: "100%", background: "#ddd", borderRadius: "5px", marginBottom: "15px", overflow: "hidden" }}>
+          <div style={{ height: "100%", width: `${(strength / 3) * 100}%`, backgroundColor: strength === 1 ? "red" : strength === 2 ? "orange" : "#0cdf21", transition: "width 0.3s ease" }}></div>
         </div>
 
         {isLogin && (
-          <p
-            onClick={handleForgotPassword}
-            style={{
-              textAlign: "right",
-              fontSize: "13px",
-              color: "#e74c3c",
-              cursor: "pointer",
-              marginTop: "-5px",
-              marginBottom: "15px",
-            }}
-          >
+          <p onClick={handleForgotPassword} style={{ textAlign: "right", fontSize: "13px", color: "#e74c3c", cursor: "pointer", marginTop: "-5px", marginBottom: "15px" }}>
             Forgot Password?
           </p>
         )}
@@ -200,13 +180,8 @@ export function Login({ setIsLoggedIn }) {
           {isLogin ? "Login" : "Signup"}
         </button>
 
-        <p
-          onClick={() => setIsLogin(!isLogin)}
-          style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}
-        >
-          {isLogin
-            ? "Don't have an account? Signup"
-            : "Already have an account? Login"}
+        <p onClick={() => setIsLogin(!isLogin)} style={{ cursor: "pointer", marginTop: "15px", color: "#3498db" }}>
+          {isLogin ? "Don't have an account? Signup" : "Already have an account? Login"}
         </p>
       </form>
     </div>

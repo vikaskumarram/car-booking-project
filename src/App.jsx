@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { Link, Route, Routes, Navigate, useNavigate } from "react-router-dom"; // 1. useNavigate add kiya
+import { Link, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { Home } from "./Home";
 import { Contact } from "./Contact";
 import { Services } from "./services";
@@ -10,26 +10,41 @@ import { Booknow } from "./Booknow";
 import { Login } from "./Login";
 import { BookingConfirmation } from "./BookingConfirmation";
 import { AdminDashboard } from "./AdminDashboard";
+import { EditProfile } from "./EditProfile";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
+  // Line 21 se 31 tak ye copy karein
   useEffect(() => {
     const userStatus = localStorage.getItem("isLoggedIn");
+    const savedUserData = localStorage.getItem("user");
+
     if (userStatus === "true") {
-      <isLoggedIn>true</isLoggedIn>;
+      setIsLoggedIn(true);
+      if (savedUserData) {
+        try {
+          setUser(JSON.parse(savedUserData));
+        } catch (e) {
+          console.error("Data parse error", e);
+        }
+      }
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <--- Yahan khali array [] rakhein aur upar wali comment line add karein
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout? 🤔")) {
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("user");
+      // ✅ Yahan bhi spelling check kar li hai
       setIsLoggedIn(false);
-
-      alert("Logged out successfully! 👋");
+      setUser(null);
+      setShowDropdown(false);
       navigate("/Login");
-      window.scrollTo(0, 0);
     }
   };
 
@@ -45,15 +60,56 @@ export default function App() {
           <Link to="/Services">Services</Link>
           <Link to="/Contact">Contact</Link>
           <Link to="/Booknow">Booknow</Link>
-        
+
           {isLoggedIn ? (
-            <button
-              className="logout-btn"
-              onClick={handleLogout}
-              style={{ cursor: "pointer" }}
+            <div
+              className="user-profile-wrapper"
+              style={{ position: "relative" }}
             >
-              Logout
-            </button>
+              <div
+                className="user-nav-section"
+                onClick={() => setShowDropdown(!showDropdown)}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <span className="user-name-display">
+                  {user?.name || "User"}
+                </span>
+                <img
+                  src={
+                    user?.profilePic ||
+                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  }
+                  alt="DP"
+                  className="nav-dp"
+                />
+              </div>
+
+              {showDropdown && (
+                <div className="profile-dropdown">
+                  <div
+                    className="dropdown-item"
+                    onClick={() => {
+                      navigate("/EditProfile");
+                      setShowDropdown(false);
+                    }}
+                  >
+                    👤 Edit Profile
+                  </div>
+                  <div className="dropdown-divider"></div>
+                  <div
+                    className="dropdown-item logout-item"
+                    onClick={handleLogout}
+                  >
+                    🛑 Logout
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/Login">Login</Link>
           )}
@@ -67,8 +123,12 @@ export default function App() {
         <Route path="/Services" element={<Services />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/admin" element={<AdminDashboard />} />
-       <Route path="/BookingConfirmation" element={<BookingConfirmation />} />
+        <Route path="/BookingConfirmation" element={<BookingConfirmation />} />
         <Route path="/Booknow" element={<Booknow isLoggedIn={isLoggedIn} />} />
+        <Route
+          path="/EditProfile"
+          element={<EditProfile setUser={setUser} />}
+        />
         <Route
           path="/Login"
           element={<Login setIsLoggedIn={setIsLoggedIn} />}
